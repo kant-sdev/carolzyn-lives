@@ -10,10 +10,7 @@ const leaves = [
 
 export function FloatingLeaves() {
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-    >
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       {leaves.map((l, i) => (
         <Leaf
           key={i}

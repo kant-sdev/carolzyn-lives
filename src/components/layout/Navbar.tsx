@@ -55,13 +55,31 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-3 mr-1 border-r border-border pr-3 text-muted-foreground">
-            <a href="https://twitch.tv" target="_blank" rel="noreferrer" aria-label="Twitch" className="hover:text-warm-orange transition-colors">
+            <a
+              href="https://twitch.tv"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Twitch"
+              className="hover:text-warm-orange transition-colors"
+            >
               <TwitchIcon className="size-4" />
             </a>
-            <a href="https://discord.com" target="_blank" rel="noreferrer" aria-label="Discord" className="hover:text-warm-orange transition-colors">
+            <a
+              href="https://discord.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Discord"
+              className="hover:text-warm-orange transition-colors"
+            >
               <DiscordIcon className="size-4" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-warm-orange transition-colors">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="hover:text-warm-orange transition-colors"
+            >
               <Instagram className="size-4" />
             </a>
           </div>

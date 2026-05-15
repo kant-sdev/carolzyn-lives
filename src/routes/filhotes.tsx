@@ -9,7 +9,11 @@ export const Route = createFileRoute("/filhotes")({
   head: () => ({
     meta: [
       { title: "Filhotes — a comunidade da carolzyn" },
-      { name: "description", content: "Conheça os filhotes: nossa comunidade acolhedora no Discord e nas lives da Twitch." },
+      {
+        name: "description",
+        content:
+          "Conheça os filhotes: nossa comunidade acolhedora no Discord e nas lives da Twitch.",
+      },
       { property: "og:title", content: "Filhotes — comunidade carolzyn" },
       { property: "og:description", content: "Um ninho de gente boa, gatinhos e café." },
     ],
@@ -18,12 +22,36 @@ export const Route = createFileRoute("/filhotes")({
 });
 
 const messages = [
-  { name: "lua_mochi", color: "bg-warm-orange", text: "esse devocional de hoje me pegou no coração 🥹 obg carol" },
-  { name: "pingo.dev", color: "bg-sage", text: "primeira live e já me senti em casa. acho que virei filhote oficial 🐾" },
-  { name: "ana_chai", color: "bg-coffee text-cream", text: "tomando meu chá enquanto leio aqui. perfeito pra noite chuvosa 🍃" },
-  { name: "joaco_pet", color: "bg-warm-orange", text: "meu gato veio dormir no meu colo no exato momento que vc disse \"filhote\" 😭" },
-  { name: "marisol", color: "bg-sage", text: "a comunidade do discord é o lugar mais gentil da internet, sério" },
-  { name: "thé.co", color: "bg-coffee text-cream", text: "alguém mais ouvindo lofi com a live aberta? combinação perfeita" },
+  {
+    name: "lua_mochi",
+    color: "bg-warm-orange",
+    text: "esse devocional de hoje me pegou no coração 🥹 obg carol",
+  },
+  {
+    name: "pingo.dev",
+    color: "bg-sage",
+    text: "primeira live e já me senti em casa. acho que virei filhote oficial 🐾",
+  },
+  {
+    name: "ana_chai",
+    color: "bg-coffee text-cream",
+    text: "tomando meu chá enquanto leio aqui. perfeito pra noite chuvosa 🍃",
+  },
+  {
+    name: "joaco_pet",
+    color: "bg-warm-orange",
+    text: 'meu gato veio dormir no meu colo no exato momento que vc disse "filhote" 😭',
+  },
+  {
+    name: "marisol",
+    color: "bg-sage",
+    text: "a comunidade do discord é o lugar mais gentil da internet, sério",
+  },
+  {
+    name: "thé.co",
+    color: "bg-coffee text-cream",
+    text: "alguém mais ouvindo lofi com a live aberta? combinação perfeita",
+  },
 ];
 
 function TwitchIcon({ className = "" }: { className?: string }) {
@@ -46,15 +74,14 @@ function FilhotesPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-warm-orange/15 text-warm-orange rounded-full text-xs font-medium mb-6">
-              <PawIcon size={12} />
-              + 1.2k filhotes no ninho
+              <PawIcon size={12} />+ 1.2k filhotes no ninho
             </div>
             <h1 className="font-serif text-5xl lg:text-7xl leading-[1.05] mb-6 text-balance">
               Muito mais que uma live, uma <span className="italic text-warm-orange">família</span>.
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
-              Ser filhote significa ter um cantinho seguro pra ser você mesmo. A gente compartilha fotos
-              dos pets, receitas de café, oração e os pequenos momentos da semana.
+              Ser filhote significa ter um cantinho seguro pra ser você mesmo. A gente compartilha
+              fotos dos pets, receitas de café, oração e os pequenos momentos da semana.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
@@ -104,9 +131,13 @@ function FilhotesPage() {
           <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
             <div>
               <h2 className="font-serif text-4xl mb-2">No mural dos filhotes</h2>
-              <p className="text-sm text-muted-foreground">Carinhos recentes da nossa comunidade.</p>
+              <p className="text-sm text-muted-foreground">
+                Carinhos recentes da nossa comunidade.
+              </p>
             </div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-warm-orange">tempo real ✦</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-warm-orange">
+              tempo real ✦
+            </span>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {messages.map((m, i) => (
@@ -120,18 +151,26 @@ function FilhotesPage() {
                 style={{ transform: `rotate(${(i % 3) - 1}deg)` }}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`size-10 rounded-full ${m.color} flex items-center justify-center text-sm font-semibold`}>
+                  <div
+                    className={`size-10 rounded-full ${m.color} flex items-center justify-center text-sm font-semibold`}
+                  >
                     {m.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
                     <p className="text-sm font-medium">@{m.name}</p>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest">filhote</p>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest">
+                      filhote
+                    </p>
                   </div>
                 </div>
                 <p className="text-sm text-foreground/80 leading-relaxed">{m.text}</p>
                 <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><Heart className="size-3" /> {12 + i * 3}</span>
-                  <span className="flex items-center gap-1"><MessageCircle className="size-3" /> {2 + i}</span>
+                  <span className="flex items-center gap-1">
+                    <Heart className="size-3" /> {12 + i * 3}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <MessageCircle className="size-3" /> {2 + i}
+                  </span>
                 </div>
               </motion.div>
             ))}

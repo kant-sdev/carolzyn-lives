@@ -1,8 +1,4 @@
-export function SteamParticles({
-  className = "",
-}: {
-  className?: string;
-}) {
+export function SteamParticles({ className = "" }: { className?: string }) {
   return (
     <div
       aria-hidden

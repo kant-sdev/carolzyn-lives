@@ -14,10 +14,38 @@ export function Footer() {
           Feito com café e oração para todos os filhotes.
         </p>
         <div className="flex justify-center gap-7 text-xs font-medium text-muted-foreground">
-          <a href="https://twitch.tv" target="_blank" rel="noreferrer" className="hover:text-warm-orange transition-colors">Twitch</a>
-          <a href="https://discord.com" target="_blank" rel="noreferrer" className="hover:text-warm-orange transition-colors">Discord</a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-warm-orange transition-colors">Instagram</a>
-          <a href="https://youtube.com" target="_blank" rel="noreferrer" className="hover:text-warm-orange transition-colors">YouTube</a>
+          <a
+            href="https://twitch.tv"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-warm-orange transition-colors"
+          >
+            Twitch
+          </a>
+          <a
+            href="https://discord.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-warm-orange transition-colors"
+          >
+            Discord
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-warm-orange transition-colors"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-warm-orange transition-colors"
+          >
+            YouTube
+          </a>
         </div>
       </div>
     </footer>
