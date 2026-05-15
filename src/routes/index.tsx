@@ -12,9 +12,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "carolzyn — Pegue sua bebida e fique à vontade, filhote" },
-      { name: "description", content: "O cantinho cozy da carolzyn: lives, devocional, comunidade dos filhotes e a cafeteria da família." },
+      {
+        name: "description",
+        content:
+          "O cantinho cozy da carolzyn: lives, devocional, comunidade dos filhotes e a cafeteria da família.",
+      },
       { property: "og:title", content: "carolzyn — um cantinho cozy" },
-      { property: "og:description", content: "Pegue sua bebida favorita e fique à vontade, filhote ☕" },
+      {
+        property: "og:description",
+        content: "Pegue sua bebida favorita e fique à vontade, filhote ☕",
+      },
     ],
   }),
   component: HomePage,
@@ -80,7 +87,8 @@ function HomePage() {
               <span className="italic text-warm-orange">filhote</span> ☕
             </h1>
             <p className="text-lg text-muted-foreground max-w-[48ch] mb-10 leading-relaxed">
-              Um cantinho calmo na internet para descansarmos, conversarmos sobre a vida e fortalecermos nossa fé. Puxe uma cadeira.
+              Um cantinho calmo na internet para descansarmos, conversarmos sobre a vida e
+              fortalecermos nossa fé. Puxe uma cadeira.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -145,7 +153,9 @@ function HomePage() {
                   to={c.to}
                   className="group block bg-card p-8 rounded-[32px] ring-1 ring-border hover:ring-warm-orange/30 hover:-translate-y-2 hover:shadow-xl hover:shadow-coffee/5 transition-all duration-500"
                 >
-                  <div className={`size-12 rounded-2xl flex items-center justify-center mb-6 ${c.tint}`}>
+                  <div
+                    className={`size-12 rounded-2xl flex items-center justify-center mb-6 ${c.tint}`}
+                  >
                     <c.icon className="size-6" />
                   </div>
                   <h3 className="font-serif text-2xl mb-3">{c.title}</h3>
@@ -175,7 +185,9 @@ function HomePage() {
               <span className="text-xs font-semibold uppercase tracking-widest">O pão de hoje</span>
             </div>
             <div className="bg-card rounded-3xl p-8 ring-1 ring-border relative">
-              <span className="absolute top-4 left-5 text-5xl text-sage/30 font-serif leading-none">"</span>
+              <span className="absolute top-4 left-5 text-5xl text-sage/30 font-serif leading-none">
+                "
+              </span>
               <p className="font-serif italic text-xl text-center mb-6 mt-2 px-3 leading-snug">
                 O Senhor é o meu pastor; de nada terei falta. Em verdes pastagens me faz repousar...
               </p>
@@ -214,8 +226,18 @@ function HomePage() {
             </div>
             <div className="grid sm:grid-cols-2 gap-5">
               {[
-                { img: latte, name: "Latte do Filhote", desc: "Expresso, leite vaporizado e canela.", price: "R$ 14,00" },
-                { img: matcha, name: "Matcha Sálvia", desc: "Matcha premium com toque refrescante.", price: "R$ 16,50" },
+                {
+                  img: latte,
+                  name: "Latte do Filhote",
+                  desc: "Expresso, leite vaporizado e canela.",
+                  price: "R$ 14,00",
+                },
+                {
+                  img: matcha,
+                  name: "Matcha Sálvia",
+                  desc: "Matcha premium com toque refrescante.",
+                  price: "R$ 16,50",
+                },
               ].map((d) => (
                 <div
                   key={d.name}

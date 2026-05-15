@@ -1,10 +1,4 @@
-export function PawIcon({
-  className = "",
-  size = 24,
-}: {
-  className?: string;
-  size?: number;
-}) {
+export function PawIcon({ className = "", size = 24 }: { className?: string; size?: number }) {
   return (
     <svg
       width={size}

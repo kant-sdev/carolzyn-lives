@@ -48,6 +48,7 @@ src/components/
 ## Páginas
 
 **Home (`/`)**
+
 - Hero split (texto + ilustração de gatinho com café e folhas)
 - Frase: "Pegue sua bebida favorita e fique à vontade, filhote ☕"
 - Badge "Ao vivo agora" pulsante
@@ -57,12 +58,14 @@ src/components/
 - Preview combinado: Devocional (versículo) + Especialidades do Café
 
 **Filhotes (`/filhotes`)**
+
 - Hero acolhedor sobre a comunidade
 - Mural com ~6 cards de mensagens mockadas (avatar, nome, comentário) em layout masonry leve
 - CTAs grandes Discord + Twitch
 - Patinhas/doodles decorativos espalhados
 
 **Devocional (`/devocional`)**
+
 - Atmosfera quarto cozy (ilustração de fundo suave)
 - Card grande "Versículo do Dia" centralizado
 - Reflexão curta mockada
@@ -70,6 +73,7 @@ src/components/
 - Tom calmo, nada institucional
 
 **Café (`/cafe`)**
+
 - História breve da cafeteria da família
 - Galeria de fotos (placeholders)
 - Cardápio: 4-6 cards de bebidas/comidas com preço
@@ -85,6 +89,7 @@ src/components/
 ## Imagens
 
 Gerar com `imagegen` (modelo `fast`, salvas em `src/assets/`):
+
 1. Gatinho cozy com xícara fumegante (hero home) — 1200x1400
 2. Mural/quarto da comunidade (filhotes hero) — 1200x800
 3. Quarto cozy com luz quente (devocional fundo) — 1200x800

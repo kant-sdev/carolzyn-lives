@@ -12,19 +12,48 @@ export const Route = createFileRoute("/cafe")({
   head: () => ({
     meta: [
       { title: "Café — a cafeteria da família carolzyn" },
-      { name: "description", content: "Conheça a cafeteria da família carolzyn: grãos selecionados, bolos artesanais e ambiente cozy." },
+      {
+        name: "description",
+        content:
+          "Conheça a cafeteria da família carolzyn: grãos selecionados, bolos artesanais e ambiente cozy.",
+      },
       { property: "og:title", content: "A cafeteria dos filhotes" },
-      { property: "og:description", content: "Grãos selecionados, bolos artesanais e muito carinho." },
+      {
+        property: "og:description",
+        content: "Grãos selecionados, bolos artesanais e muito carinho.",
+      },
     ],
   }),
   component: CafePage,
 });
 
 const menu = [
-  { img: latte, name: "Latte do Filhote", desc: "Expresso, leite vaporizado e um toque de canela.", price: "R$ 14,00", tag: "favorito" },
-  { img: matcha, name: "Matcha Sálvia", desc: "Matcha premium com toque refrescante de sálvia.", price: "R$ 16,50" },
-  { img: cinnamon, name: "Pão de Canela", desc: "Massa fofinha com glacê de cream cheese, feito na hora.", price: "R$ 12,00" },
-  { img: cake, name: "Bolo de Cenoura da Vó", desc: "Receita de família com cobertura de cream cheese.", price: "R$ 11,00", tag: "novidade" },
+  {
+    img: latte,
+    name: "Latte do Filhote",
+    desc: "Expresso, leite vaporizado e um toque de canela.",
+    price: "R$ 14,00",
+    tag: "favorito",
+  },
+  {
+    img: matcha,
+    name: "Matcha Sálvia",
+    desc: "Matcha premium com toque refrescante de sálvia.",
+    price: "R$ 16,50",
+  },
+  {
+    img: cinnamon,
+    name: "Pão de Canela",
+    desc: "Massa fofinha com glacê de cream cheese, feito na hora.",
+    price: "R$ 12,00",
+  },
+  {
+    img: cake,
+    name: "Bolo de Cenoura da Vó",
+    desc: "Receita de família com cobertura de cream cheese.",
+    price: "R$ 11,00",
+    tag: "novidade",
+  },
 ];
 
 function CafePage() {
@@ -49,8 +78,12 @@ function CafePage() {
               música baixinha e gente que lembra do seu nome.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground mb-8">
-              <span className="flex items-center gap-2"><MapPin className="size-4 text-warm-orange" /> Rua das Acácias, 142</span>
-              <span className="flex items-center gap-2"><Clock className="size-4 text-warm-orange" /> 08:00 — 19:00</span>
+              <span className="flex items-center gap-2">
+                <MapPin className="size-4 text-warm-orange" /> Rua das Acácias, 142
+              </span>
+              <span className="flex items-center gap-2">
+                <Clock className="size-4 text-warm-orange" /> 08:00 — 19:00
+              </span>
             </div>
             <a
               href="https://instagram.com"
@@ -89,7 +122,9 @@ function CafePage() {
       <section className="py-20 px-6 bg-muted/40">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-warm-orange">cardápio</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-warm-orange">
+              cardápio
+            </span>
             <h2 className="font-serif text-4xl lg:text-5xl mt-2">O que tá rolando hoje</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
@@ -119,7 +154,9 @@ function CafePage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-muted-foreground mb-auto leading-relaxed">{item.desc}</p>
+                  <p className="text-sm text-muted-foreground mb-auto leading-relaxed">
+                    {item.desc}
+                  </p>
                   <span className="font-serif text-lg mt-3">{item.price}</span>
                 </div>
               </motion.div>
@@ -139,7 +176,8 @@ function CafePage() {
         >
           <h2 className="font-serif text-4xl mb-4">Aparece pra tomar um café com a gente ☕</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            Marca a Carol nas suas fotos da cafeteria — adoramos repostar os filhotes que aparecem por lá.
+            Marca a Carol nas suas fotos da cafeteria — adoramos repostar os filhotes que aparecem
+            por lá.
           </p>
           <a
             href="https://instagram.com"
