@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Coffee, Users } from "lucide-react";
 import heroCat from "@/assets/hero-cat.jpg";
 import latte from "@/assets/drink-latte.jpg";
-import matcha from "@/assets/drink-matcha.jpg";
+import coffeePlaceholder from "@/assets/drink-coffeePlaceholder.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
 import { PawIcon } from "@/components/cozy/PawIcon";
@@ -227,7 +227,7 @@ function HomePage() {
                   desc: "Expresso, leite vaporizado e canela."
                 },
                 {
-                  img: matcha,
+                  img: coffeePlaceholder,
                   name: "Matcha Sálvia",
                   desc: "Matcha premium com toque refrescante."
                 },
