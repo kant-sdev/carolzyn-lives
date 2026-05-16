@@ -7,6 +7,7 @@ import matcha from "@/assets/drink-matcha.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
 import { PawIcon } from "@/components/cozy/PawIcon";
+import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -75,13 +76,7 @@ function HomePage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="z-10"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage/15 text-sage rounded-full text-xs font-medium mb-6 ring-1 ring-sage/30">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-sage opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-sage" />
-              </span>
-              Cafeteria da Carol aberta
-            </div>
+            <StreamStatusBadge showViewerCount />
             <h1 className="font-serif text-5xl lg:text-7xl leading-[1.05] mb-8 text-balance">
               Pegue sua bebida favorita e fique à vontade,{" "}
               <span className="italic text-warm-orange">filhote</span> ☕
@@ -92,7 +87,7 @@ function HomePage() {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="https://twitch.tv"
+                href="https://twitch.tv/carolzyn"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-warm-orange text-primary-foreground py-3 px-5 rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-warm-orange/20 transition-all flex items-center gap-2 active:scale-95"
@@ -101,7 +96,7 @@ function HomePage() {
                 Acompanhe na Twitch
               </a>
               <a
-                href="https://discord.com"
+                href="https://discord.gg/7g9wqcKhb"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-card text-foreground py-3 px-6 rounded-xl text-sm font-semibold ring-1 ring-border hover:ring-foreground/30 transition-all"
@@ -229,14 +224,12 @@ function HomePage() {
                 {
                   img: latte,
                   name: "Latte do Filhote",
-                  desc: "Expresso, leite vaporizado e canela.",
-                  price: "R$ 14,00",
+                  desc: "Expresso, leite vaporizado e canela."
                 },
                 {
                   img: matcha,
                   name: "Matcha Sálvia",
-                  desc: "Matcha premium com toque refrescante.",
-                  price: "R$ 16,50",
+                  desc: "Matcha premium com toque refrescante."
                 },
               ].map((d) => (
                 <div
@@ -254,7 +247,6 @@ function HomePage() {
                   <div>
                     <h4 className="font-medium mb-1">{d.name}</h4>
                     <p className="text-xs text-muted-foreground mb-2">{d.desc}</p>
-                    <span className="text-sm font-serif">{d.price}</span>
                   </div>
                 </div>
               ))}

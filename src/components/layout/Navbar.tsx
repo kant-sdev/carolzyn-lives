@@ -3,6 +3,7 @@ import { Instagram, Moon, Sun, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "@/hooks/use-theme";
 import { PawIcon } from "@/components/cozy/PawIcon";
+import { TwitchLiveButton } from "@/components/twitch/TwitchLiveButton";
 
 const links = [
   { to: "/", label: "Início" },
@@ -56,7 +57,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-3 mr-1 border-r border-border pr-3 text-muted-foreground">
             <a
-              href="https://twitch.tv"
+              href="https://twitch.tv/carolzyn"
               target="_blank"
               rel="noreferrer"
               aria-label="Twitch"
@@ -65,7 +66,7 @@ export function Navbar() {
               <TwitchIcon className="size-4" />
             </a>
             <a
-              href="https://discord.com"
+              href="https://discord.gg/7g9wqcKhb"
               target="_blank"
               rel="noreferrer"
               aria-label="Discord"
@@ -90,15 +91,7 @@ export function Navbar() {
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
-          <a
-            href="https://twitch.tv"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden sm:inline-flex bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-all items-center gap-2"
-          >
-            Entrar na Live
-            <span className="size-1.5 bg-red-400 rounded-full animate-pulse" />
-          </a>
+          <TwitchLiveButton />
           <button
             className="md:hidden size-9 rounded-full hover:bg-muted flex items-center justify-center"
             onClick={() => setOpen((v) => !v)}

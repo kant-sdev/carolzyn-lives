@@ -30,6 +30,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.lovable/
+.tanstack/
+.netlify/
+scripts/
 
 # Local Netlify folder
 .netlify
+
+# Pasta de docs dentro do src
+src/docs

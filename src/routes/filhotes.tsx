@@ -4,6 +4,7 @@ import { Heart, MessageCircle } from "lucide-react";
 import mural from "@/assets/filhotes-mural.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { PawIcon } from "@/components/cozy/PawIcon";
+import { RecentFollowers } from "@/components/twitch/RecentFollowers";
 
 export const Route = createFileRoute("/filhotes")({
   head: () => ({
@@ -130,14 +131,89 @@ function FilhotesPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
             <div>
-              <h2 className="font-serif text-4xl mb-2">No mural dos filhotes</h2>
+              <h2 className="font-serif text-4xl mb-2">Filhotes em tempo real</h2>
               <p className="text-sm text-muted-foreground">
-                Carinhos recentes da nossa comunidade.
+                Últimos a entrar no ninho e quantos estão na live agora.
               </p>
             </div>
             <span className="text-xs font-semibold uppercase tracking-widest text-warm-orange">
-              tempo real ✦
+              ao vivo ✦
             </span>
+          </div>
+
+          {/* Recent followers component */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6 }}
+              className="rounded-3xl ring-1 ring-border bg-card/50 p-6"
+            >
+              <RecentFollowers />
+            </motion.div>
+
+            {/* Community stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex flex-col justify-between"
+            >
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-serif text-3xl mb-2">Juntos no ninho</h3>
+                  <p className="text-muted-foreground">
+                    Nossa comunidade cresce a cada semana com novos filhotes que escolhem fazer parte
+                    dessa família aconchegante.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="p-4 rounded-2xl bg-sage/10 border border-sage/20">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-1">
+                      No Discord
+                    </p>
+                    <p className="text-2xl font-semibold">+1.2k filhotes</p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-warm-orange/10 border border-warm-orange/20">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-1">
+                      Seguindo na Twitch
+                    </p>
+                    <p className="text-2xl font-semibold">+2.8k seguidores</p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-coffee/10 border border-coffee/20">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-coffee mb-1">
+                      Crescimento mensal
+                    </p>
+                    <p className="text-2xl font-semibold">+150 novos</p>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://discord.gg/7g9wqcKhb"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 bg-warm-orange text-primary-foreground py-3 px-6 rounded-full font-semibold hover:shadow-lg hover:shadow-warm-orange/20 transition-all text-center"
+              >
+                Entrar no Discord
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-16 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+          {/* Messages section */}
+          <div className="mb-10">
+            <h2 className="font-serif text-4xl mb-2">No mural dos filhotes</h2>
+            <p className="text-sm text-muted-foreground">
+              Carinhos recentes da nossa comunidade.
+            </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {messages.map((m, i) => (
