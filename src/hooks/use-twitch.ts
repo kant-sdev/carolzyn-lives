@@ -36,13 +36,15 @@ async function fetchUser(): Promise<TwitchUser> {
   return response.json();
 }
 
+const TEN_MINUTES = 10 * 60 * 1000;
+
 export function useStreamStatus() {
   return useQuery({
     queryKey: ["twitch-stream"],
     queryFn: fetchStream,
-    refetchInterval: 30_000,
+    refetchInterval: TEN_MINUTES,
     refetchOnWindowFocus: false,
-    staleTime: 25_000,
+    staleTime: TEN_MINUTES,
     retry: 1,
   });
 }
@@ -51,9 +53,9 @@ export function useFollowers(limit: number = 10) {
   return useQuery({
     queryKey: ["twitch-followers", limit],
     queryFn: () => fetchFollowers(limit),
-    refetchInterval: 60_000,
+    refetchInterval: TEN_MINUTES,
     refetchOnWindowFocus: false,
-    staleTime: 55_000,
+    staleTime: TEN_MINUTES,
     retry: 1,
   });
 }

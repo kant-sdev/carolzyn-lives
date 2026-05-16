@@ -1,11 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Instagram, MapPin, Clock } from "lucide-react";
+import { Instagram, MapPin, Clock, Phone } from "lucide-react";
 import cafeInterior from "@/assets/cafe-interior.jpg";
-import latte from "@/assets/drink-latte.jpg";
-import matcha from "@/assets/drink-matcha.jpg";
-import cinnamon from "@/assets/food-cinnamon.jpg";
-import cake from "@/assets/food-cake.jpg";
+import coffeePlaceholder from "@/assets/drink-coffeePlaceholder.jpg";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
 
 export const Route = createFileRoute("/cafe")({
@@ -29,30 +26,72 @@ export const Route = createFileRoute("/cafe")({
 
 const menu = [
   {
-    img: latte,
-    name: "Latte do Filhote",
-    desc: "Expresso, leite vaporizado e um toque de canela.",
-    price: "R$ 14,00",
-    tag: "favorito",
+    category: "Grãos",
+    items: [
+      {
+        img: coffeePlaceholder,
+        name: "Grão Arábica • Torra Média",
+        desc: "Grãos selecionados com torra média artesanal, disponíveis em diferentes perfis de sabor.",
+        price: "Consulte na cafeteria",
+        tag: "especial",
+      },
+    ],
   },
+
   {
-    img: matcha,
-    name: "Matcha Sálvia",
-    desc: "Matcha premium com toque refrescante de sálvia.",
-    price: "R$ 16,50",
+    category: "Métodos Quentes",
+    items: [
+      {
+        img: coffeePlaceholder,
+        name: "Café Expresso",
+        desc: "Extração intensa, cremosa e aromática para acompanhar momentos tranquilos.",
+        price: "Consulte na cafeteria",
+        tag: "clássico",
+      },
+
+      {
+        img: coffeePlaceholder,
+        name: "Café Coado",
+        desc: "Passado com calma, equilibrado e aconchegante como café de casa.",
+        price: "Consulte na cafeteria",
+        tag: "cozy",
+      },
+
+      {
+        img: coffeePlaceholder,
+        name: "Prensa Francesa",
+        desc: "Método encorpado que destaca aromas suaves e notas mais profundas do café.",
+        price: "Consulte na cafeteria",
+      },
+
+      {
+        img: coffeePlaceholder,
+        name: "Cappuccino",
+        desc: "Cremoso, quentinho e perfeito para desacelerar um pouquinho do dia.",
+        price: "Consulte na cafeteria",
+        tag: "favorito",
+      },
+
+      {
+        img: coffeePlaceholder,
+        name: "Macchiato",
+        desc: "Equilíbrio delicado entre expresso e leite vaporizado.",
+        price: "Consulte na cafeteria",
+      },
+    ],
   },
+
   {
-    img: cinnamon,
-    name: "Pão de Canela",
-    desc: "Massa fofinha com glacê de cream cheese, feito na hora.",
-    price: "R$ 12,00",
-  },
-  {
-    img: cake,
-    name: "Bolo de Cenoura da Vó",
-    desc: "Receita de família com cobertura de cream cheese.",
-    price: "R$ 11,00",
-    tag: "novidade",
+    category: "Gelados",
+    items: [
+      {
+        img: coffeePlaceholder,
+        name: "Cappuccino Gelado",
+        desc: "Refrescante, cremoso e perfeito para tardes mais leves.",
+        price: "Consulte na cafeteria",
+        tag: "gelado",
+      },
+    ],
   },
 ];
 
@@ -68,25 +107,37 @@ function CafePage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage/15 text-sage rounded-full text-xs font-medium mb-6">
-              Aberta de terça a domingo
+              ☕ Café quentinho esperando os filhotes
             </div>
+
             <h1 className="font-serif text-5xl lg:text-7xl leading-[1.05] mb-6 text-balance">
               O <span className="italic text-warm-orange">cantinho</span> físico dos filhotes.
             </h1>
+
             <p className="text-lg text-muted-foreground max-w-[48ch] leading-relaxed mb-8">
-              A cafeteria da nossa família existe há 12 anos. Grãos selecionados, bolos da vó,
-              música baixinha e gente que lembra do seu nome.
+              O Ale's Café nasceu do amor por café passado com calma, conversa boa e momentos
+              simples. Um cantinho aconchegante da nossa família, com grãos selecionados,
+              bebidas especiais e aquele cheirinho de café fresco que abraça a alma.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground mb-8">
+
+            <div className="flex flex-col lg:flex-row lg:flex-wrap gap-4 text-sm text-muted-foreground mb-8">
               <span className="flex items-center gap-2">
-                <MapPin className="size-4 text-warm-orange" /> Rua das Acácias, 142
+                <MapPin className="size-4 text-warm-orange shrink-0" />
+                Rua Ambrosina do Carmo Buornaguide, 305, Caieiras, SP
               </span>
+
               <span className="flex items-center gap-2">
-                <Clock className="size-4 text-warm-orange" /> 08:00 — 19:00
+                <Clock className="size-4 text-warm-orange shrink-0" />
+                Seg à sex • 07h às 18h · Sáb • 09h às 13h
+              </span>
+
+              <span className="flex items-center gap-2">
+                <Phone className="size-4 text-warm-orange shrink-0" />
+                (11) 97380-0102
               </span>
             </div>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/cafeteria_alescafe/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-warm-orange text-primary-foreground py-3 px-6 rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-warm-orange/20 transition-all"
@@ -128,9 +179,10 @@ function CafePage() {
             <h2 className="font-serif text-4xl lg:text-5xl mt-2">O que tá rolando hoje</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
-            {menu.map((item, i) => (
+            {/** Flatten categories to a simple items list for rendering */}
+            {menu.flatMap((c) => c.items).map((item, i) => (
               <motion.div
-                key={item.name}
+                key={`${item.name}-${i}`}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -180,13 +232,13 @@ function CafePage() {
             por lá.
           </p>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/cafeteria_alescafe/"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-all"
           >
             <Instagram className="size-4" />
-            @cafeteria.dosfilhotes
+            @cafeteria_alescafe
           </a>
         </motion.div>
       </section>

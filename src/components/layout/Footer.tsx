@@ -15,7 +15,7 @@ export function Footer() {
         </p>
         <div className="flex justify-center gap-7 text-xs font-medium text-muted-foreground">
           <a
-            href="https://twitch.tv"
+            href="https://twitch.tv/carolzyn"
             target="_blank"
             rel="noreferrer"
             className="hover:text-warm-orange transition-colors"
@@ -23,7 +23,7 @@ export function Footer() {
             Twitch
           </a>
           <a
-            href="https://discord.com"
+            href="https://discord.gg/7g9wqcKhb"
             target="_blank"
             rel="noreferrer"
             className="hover:text-warm-orange transition-colors"
@@ -31,20 +31,12 @@ export function Footer() {
             Discord
           </a>
           <a
-            href="https://instagram.com"
+              href="https://www.instagram.com/oicarolzyn/"
             target="_blank"
             rel="noreferrer"
             className="hover:text-warm-orange transition-colors"
           >
             Instagram
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-warm-orange transition-colors"
-          >
-            YouTube
           </a>
         </div>
       </div>

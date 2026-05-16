@@ -75,7 +75,7 @@ export function Navbar() {
               <DiscordIcon className="size-4" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/oicarolzyn/"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -115,7 +115,7 @@ export function Navbar() {
               </Link>
             ))}
             <a
-              href="https://twitch.tv"
+              href="https://twitch.tv/carolzyn"
               target="_blank"
               rel="noreferrer"
               className="bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-medium text-center"

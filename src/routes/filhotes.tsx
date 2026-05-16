@@ -54,6 +54,10 @@ function FilhotesPage() {
     ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes seguindo ☕`
     : "Muitos filhotes espalhando carinho ☕";
 
+  const topBadgeLabel = totalFollowers
+    ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes no ninho`
+    : "Filhotes no ninho";
+
   const streamLabel = isStreamOnline
     ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes na live agora 🐾`
     : "Comunidade crescendo toda semana ☕";
@@ -69,7 +73,7 @@ function FilhotesPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-warm-orange/15 text-warm-orange rounded-full text-xs font-medium mb-6">
-              <PawIcon size={12} />+ 1.2k filhotes no ninho
+              <PawIcon size={12} />{isLoadingStats ? "Filhotes no ninho" : topBadgeLabel}
             </div>
             <h1 className="font-serif text-5xl lg:text-7xl leading-[1.05] mb-6 text-balance">
               Muito mais que uma live, uma <span className="italic text-warm-orange">família</span>.
@@ -80,7 +84,7 @@ function FilhotesPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
-                href="https://discord.com"
+                href="https://discord.gg/7g9wqcKhb"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-warm-orange text-primary-foreground py-3 px-6 rounded-xl text-sm font-semibold hover:shadow-lg transition-all"
@@ -88,7 +92,7 @@ function FilhotesPage() {
                 Entrar no Discord
               </a>
               <a
-                href="https://twitch.tv"
+                href="https://twitch.tv/carolzyn"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-card text-foreground py-3 px-6 rounded-xl text-sm font-semibold ring-1 ring-border hover:ring-foreground/30 transition-all flex items-center gap-2"
@@ -223,7 +227,7 @@ function FilhotesPage() {
               Entre no Discord pra encontrar gente boa, gatinhos e os recadinhos das lives.
             </p>
             <a
-              href="https://discord.com"
+                href="https://discord.gg/7g9wqcKhb"
               target="_blank"
               rel="noreferrer"
               className="inline-block bg-foreground text-background px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-all"

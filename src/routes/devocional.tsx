@@ -107,7 +107,7 @@ function DevocionalPage() {
             Café, oração e papo bom.
           </p>
           <a
-            href="https://twitch.tv"
+            href="https://twitch.tv/carolzyn"
             target="_blank"
             rel="noreferrer"
             className="inline-block bg-warm-orange text-primary-foreground px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-warm-orange/20 transition-all"
