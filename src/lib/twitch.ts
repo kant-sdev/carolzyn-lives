@@ -242,6 +242,90 @@ export async function getStream(userLogin: string): Promise<TwitchStream> {
   }
 }
 
+export interface TwitchFollowerStats {
+  totalFollowers: number;
+  followers: TwitchFollower[];
+}
+
+export async function getFollowers(
+  userLogin: string,
+  limit: number = 10
+): Promise<TwitchFollowerStats> {
+  try {
+    if (!userLogin || typeof userLogin !== "string") {
+      throw new Error("userLogin inválido");
+    }
+
+    if (limit < 1 || limit > 100) {
+      throw new Error("Limit deve estar entre 1 e 100");
+    }
+
+    console.log(`[Twitch] Buscando ${limit} seguidores recentes de: ${userLogin}`);
+
+    const userUrl = new URL("https://api.twitch.tv/helix/users");
+    userUrl.searchParams.append("login", userLogin.toLowerCase());
+
+    const userResponse = (await makeAuthenticatedRequest<{ data: TwitchUser[] }>(
+      userUrl.toString()
+    )) as { data: TwitchUser[] };
+
+    if (!userResponse.data || userResponse.data.length === 0) {
+      throw new Error(`Usuário "${userLogin}" não encontrado`);
+    }
+
+    const userId = userResponse.data[0].id;
+    console.log(`[Twitch] ID do usuário obtido: ${userId}`);
+
+    const followersUrl = new URL("https://api.twitch.tv/helix/channels/followers");
+    followersUrl.searchParams.append("broadcaster_id", userId);
+    followersUrl.searchParams.append("first", limit.toString());
+
+    const followersResponse = (await makeAuthenticatedRequest<{
+      total: number;
+      data: TwitchFollowerRaw[];
+    }>(followersUrl.toString())) as {
+      total: number;
+      data: TwitchFollowerRaw[];
+    };
+
+    if (!followersResponse.data) {
+      console.log(`[Twitch] Nenhum seguidor encontrado para ${userLogin}`);
+      return {
+        totalFollowers: followersResponse.total || 0,
+        followers: [],
+      };
+    }
+
+    const normalizedFollowers: TwitchFollower[] = followersResponse.data.map((follower) => ({
+      user_id: follower.from_id,
+      user_login: follower.from_login,
+      user_name: follower.from_name,
+      followed_at: follower.followed_at,
+    }));
+
+    console.log(
+      `[Twitch] ${normalizedFollowers.length} seguidores recentes carregados com sucesso`
+    );
+
+    const sorted = normalizedFollowers.sort((a, b) => {
+      return new Date(b.followed_at).getTime() - new Date(a.followed_at).getTime();
+    });
+
+    return {
+      totalFollowers: followersResponse.total || 0,
+      followers: sorted,
+    };
+  } catch (error) {
+    const errorMsg = `[Twitch] Erro ao buscar seguidores: ${error instanceof Error ? error.message : String(error)}`;
+    console.error(errorMsg);
+
+    return {
+      totalFollowers: 0,
+      followers: [],
+    };
+  }
+}
+
 /**
  * Função auxiliar para testar a autenticação
  * Útil para verificar se as credenciais estão corretas

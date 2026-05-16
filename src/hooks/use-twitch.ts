@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { TwitchFollower, TwitchStream, TwitchUser } from "@/lib/twitch";
+import type { TwitchFollower, TwitchFollowerStats, TwitchStream, TwitchUser } from "@/lib/twitch";
 
 const API_PATHS = {
   stream: "/api/twitch/stream",
@@ -15,13 +15,17 @@ async function fetchStream(): Promise<TwitchStream> {
   return response.json();
 }
 
-async function fetchFollowers(limit: number): Promise<TwitchFollower[]> {
+async function fetchFollowers(limit: number): Promise<TwitchFollowerStats> {
   const response = await fetch(API_PATHS.followers);
   if (!response.ok) {
     throw new Error("Falha ao buscar seguidores");
   }
-  const data = (await response.json()) as { followers: TwitchFollower[] };
-  return data.followers.slice(0, limit);
+
+  const data = (await response.json()) as TwitchFollowerStats;
+  return {
+    totalFollowers: data.totalFollowers,
+    followers: data.followers.slice(0, limit),
+  };
 }
 
 async function fetchUser(): Promise<TwitchUser> {

@@ -44,7 +44,7 @@ export function RecentFollowers({ limit = 10 }: RecentFollowersProps) {
   }, []);
 
   const isLoading = followersLoading && streamLoading;
-  const followers = followersData ?? [];
+  const followers = followersData?.followers ?? [];
   const stream = streamData ?? {
     online: false,
     viewer_count: 0,

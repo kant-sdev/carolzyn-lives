@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Heart, MessageCircle } from "lucide-react";
 import mural from "@/assets/filhotes-mural.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { PawIcon } from "@/components/cozy/PawIcon";
 import { RecentFollowers } from "@/components/twitch/RecentFollowers";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useFollowers, useStreamStatus } from "@/hooks/use-twitch";
 
 export const Route = createFileRoute("/filhotes")({
   head: () => ({
@@ -22,39 +23,6 @@ export const Route = createFileRoute("/filhotes")({
   component: FilhotesPage,
 });
 
-const messages = [
-  {
-    name: "lua_mochi",
-    color: "bg-warm-orange",
-    text: "esse devocional de hoje me pegou no coração 🥹 obg carol",
-  },
-  {
-    name: "pingo.dev",
-    color: "bg-sage",
-    text: "primeira live e já me senti em casa. acho que virei filhote oficial 🐾",
-  },
-  {
-    name: "ana_chai",
-    color: "bg-coffee text-cream",
-    text: "tomando meu chá enquanto leio aqui. perfeito pra noite chuvosa 🍃",
-  },
-  {
-    name: "joaco_pet",
-    color: "bg-warm-orange",
-    text: 'meu gato veio dormir no meu colo no exato momento que vc disse "filhote" 😭',
-  },
-  {
-    name: "marisol",
-    color: "bg-sage",
-    text: "a comunidade do discord é o lugar mais gentil da internet, sério",
-  },
-  {
-    name: "thé.co",
-    color: "bg-coffee text-cream",
-    text: "alguém mais ouvindo lofi com a live aberta? combinação perfeita",
-  },
-];
-
 function TwitchIcon({ className = "" }: { className?: string }) {
   return (
     <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -64,6 +32,32 @@ function TwitchIcon({ className = "" }: { className?: string }) {
 }
 
 function FilhotesPage() {
+  const {
+    data: followersData,
+    isLoading: followersLoading,
+    isError: followersError,
+  } = useFollowers(10);
+
+  const {
+    data: streamData,
+    isLoading: streamLoading,
+    isError: streamError,
+  } = useStreamStatus();
+
+  const totalFollowers = followersData?.totalFollowers;
+  const isStreamOnline = streamData?.online;
+  const viewerCount = streamData?.viewer_count ?? 0;
+  const isLoadingStats = followersLoading || streamLoading;
+  const hasStatsError = followersError || streamError;
+
+  const followersLabel = totalFollowers
+    ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes seguindo ☕`
+    : "Muitos filhotes espalhando carinho ☕";
+
+  const streamLabel = isStreamOnline
+    ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes na live agora 🐾`
+    : "Comunidade crescendo toda semana ☕";
+
   return (
     <>
       <section className="relative px-6 pt-16 pb-20 overflow-hidden">
@@ -171,25 +165,36 @@ function FilhotesPage() {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="p-4 rounded-2xl bg-sage/10 border border-sage/20">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-1">
-                      No Discord
-                    </p>
-                    <p className="text-2xl font-semibold">+1.2k filhotes</p>
-                  </div>
-
                   <div className="p-4 rounded-2xl bg-warm-orange/10 border border-warm-orange/20">
                     <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-1">
-                      Seguindo na Twitch
+                      Seguidores na Twitch
                     </p>
-                    <p className="text-2xl font-semibold">+2.8k seguidores</p>
+                    {isLoadingStats ? (
+                      <Skeleton className="h-12 w-full max-w-xs rounded-2xl" />
+                    ) : (
+                      <p className="text-2xl font-semibold">{followersLabel}</p>
+                    )}
+                    <p className="text-sm text-muted-foreground mt-2">
+                      {hasStatsError
+                        ? "A conexão quis dar uma pausa, mas o carinho segue aqui."
+                        : "Cada novo seguidor é um filhote chegando no ninho."}
+                    </p>
                   </div>
 
                   <div className="p-4 rounded-2xl bg-coffee/10 border border-coffee/20">
                     <p className="text-xs font-semibold uppercase tracking-widest text-coffee mb-1">
-                      Crescimento mensal
+                      Crescimento da comunidade
                     </p>
-                    <p className="text-2xl font-semibold">+150 novos</p>
+                    {isLoadingStats ? (
+                      <Skeleton className="h-12 w-full max-w-xs rounded-2xl" />
+                    ) : (
+                      <p className="text-2xl font-semibold">{streamLabel}</p>
+                    )}
+                    <p className="text-sm text-muted-foreground mt-2">
+                      {isStreamOnline
+                        ? "A live está quentinha e cheia de abraços."
+                        : "Mesmo offline, o ninho continua crescendo devagar e com carinho."}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -203,53 +208,6 @@ function FilhotesPage() {
                 Entrar no Discord
               </a>
             </motion.div>
-          </div>
-
-          {/* Divider */}
-          <div className="my-16 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-          {/* Messages section */}
-          <div className="mb-10">
-            <h2 className="font-serif text-4xl mb-2">No mural dos filhotes</h2>
-            <p className="text-sm text-muted-foreground">
-              Carinhos recentes da nossa comunidade.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {messages.map((m, i) => (
-              <motion.div
-                key={m.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.45, delay: i * 0.05 }}
-                className="bg-card p-6 rounded-3xl ring-1 ring-border hover:ring-warm-orange/30 hover:-translate-y-1 transition-all"
-                style={{ transform: `rotate(${(i % 3) - 1}deg)` }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className={`size-10 rounded-full ${m.color} flex items-center justify-center text-sm font-semibold`}
-                  >
-                    {m.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">@{m.name}</p>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest">
-                      filhote
-                    </p>
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/80 leading-relaxed">{m.text}</p>
-                <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Heart className="size-3" /> {12 + i * 3}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MessageCircle className="size-3" /> {2 + i}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

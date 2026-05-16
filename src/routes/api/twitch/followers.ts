@@ -1,9 +1,7 @@
-import { getRecentFollowers } from "@/lib/twitch";
-import type { TwitchFollower } from "@/lib/twitch";
+import { getFollowers } from "@/lib/twitch";
+import type { TwitchFollower, TwitchFollowerStats } from "@/lib/twitch";
 
-interface FollowersResponse {
-  followers: TwitchFollower[];
-  count: number;
+interface FollowersResponse extends TwitchFollowerStats {
   timestamp: string;
 }
 
@@ -12,11 +10,10 @@ export async function GET(): Promise<Response> {
     const userLogin = process.env.TWITCH_USERNAME || process.env.TWITCH_USER_LOGIN || "carolzyn";
     const limit = 10; // Retorna apenas 10 seguidores mais recentes
 
-    const followers = await getRecentFollowers(userLogin, limit);
+    const followersData = await getFollowers(userLogin, limit);
 
     const response: FollowersResponse = {
-      followers,
-      count: followers.length,
+      ...followersData,
       timestamp: new Date().toISOString(),
     };
 
@@ -31,8 +28,8 @@ export async function GET(): Promise<Response> {
     console.error("[API] Erro ao buscar seguidores:", error);
 
     const fallbackResponse: FollowersResponse = {
+      totalFollowers: 0,
       followers: [],
-      count: 0,
       timestamp: new Date().toISOString(),
     };
 
