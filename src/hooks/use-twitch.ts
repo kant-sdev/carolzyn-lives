@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { TwitchFollower, TwitchFollowerStats, TwitchStream, TwitchUser } from "@/lib/twitch";
 
 const API_PATHS = {
-  stream: "/api/twitch/stream",
+  stream: "/.netlify/functions/twitch-stream",
   followers: "/api/twitch/followers",
   user: "/api/twitch/user",
 };
