@@ -8,7 +8,7 @@ const API_PATHS = {
 };
 
 async function fetchStream(): Promise<TwitchStream> {
-  const response = await fetch(API_PATHS.stream);
+  const response = await fetch(API_PATHS.stream, { cache: "no-store" });
   if (!response.ok) {
     throw new Error("Falha ao buscar status da stream");
   }
@@ -36,15 +36,14 @@ async function fetchUser(): Promise<TwitchUser> {
   return response.json();
 }
 
-const TEN_MINUTES = 10 * 60 * 1000;
-
 export function useStreamStatus() {
   return useQuery({
     queryKey: ["twitch-stream"],
     queryFn: fetchStream,
-    refetchInterval: TEN_MINUTES,
-    refetchOnWindowFocus: false,
-    staleTime: TEN_MINUTES,
+    // Atualiza automaticamente a cada 30 minutos e busca ao focar a janela
+    refetchInterval: 30 * 60 * 1000,
+    refetchOnWindowFocus: true,
+    staleTime: 0,
     retry: 1,
   });
 }
@@ -53,9 +52,9 @@ export function useFollowers(limit: number = 10) {
   return useQuery({
     queryKey: ["twitch-followers", limit],
     queryFn: () => fetchFollowers(limit),
-    refetchInterval: TEN_MINUTES,
-    refetchOnWindowFocus: false,
-    staleTime: TEN_MINUTES,
+    refetchInterval: 30 * 60 * 1000,
+    refetchOnWindowFocus: true,
+    staleTime: 0,
     retry: 1,
   });
 }
