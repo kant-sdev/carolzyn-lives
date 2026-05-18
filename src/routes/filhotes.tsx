@@ -129,14 +129,11 @@ function FilhotesPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
             <div>
-              <h2 className="font-serif text-4xl mb-2">Filhotes em tempo real</h2>
+              <h2 className="font-serif text-4xl mb-2">Últimos filhotes que chegaram 🐾</h2>
               <p className="text-sm text-muted-foreground">
-                Últimos a entrar no ninho e quantos estão na live agora.
+                Pessoas que decidiram fazer parte do ninho recentemente.
               </p>
             </div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-warm-orange">
-              ao vivo ✦
-            </span>
           </div>
 
           {/* Recent followers component */}

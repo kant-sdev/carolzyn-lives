@@ -53,8 +53,9 @@ export function useFollowers(limit: number = 10) {
     queryKey: ["twitch-followers", limit],
     queryFn: () => fetchFollowers(limit),
     refetchInterval: 30 * 60 * 1000,
-    refetchOnWindowFocus: true,
-    staleTime: 0,
+    refetchOnWindowFocus: false,
+    staleTime: 30 * 60 * 1000,
+    cacheTime: 30 * 60 * 1000,
     retry: 1,
   });
 }

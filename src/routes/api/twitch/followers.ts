@@ -21,7 +21,7 @@ export async function GET(): Promise<Response> {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=60, s-maxage=60", // Cache 1 minuto
+        "Cache-Control": "public, max-age=1800, s-maxage=1800", // Cache 30 minutos
       },
     });
   } catch (error) {
@@ -37,7 +37,7 @@ export async function GET(): Promise<Response> {
       status: 500,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=60, s-maxage=60",
+        "Cache-Control": "public, max-age=1800, s-maxage=1800",
       },
     });
   }
