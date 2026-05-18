@@ -41,7 +41,7 @@ export function useStreamStatus() {
     queryKey: ["twitch-stream"],
     queryFn: fetchStream,
     // Atualiza automaticamente a cada 30 minutos e busca ao focar a janela
-    refetchInterval: 30 * 60 * 1000,
+    refetchInterval: 15 * 60 * 1000,
     refetchOnWindowFocus: true,
     staleTime: 0,
     retry: 1,
@@ -52,10 +52,10 @@ export function useFollowers(limit: number = 10) {
   return useQuery({
     queryKey: ["twitch-followers", limit],
     queryFn: () => fetchFollowers(limit),
-    refetchInterval: 30 * 60 * 1000,
+    refetchInterval: 15 * 60 * 1000,
     refetchOnWindowFocus: false,
-    staleTime: 30 * 60 * 1000,
-    cacheTime: 30 * 60 * 1000,
+    staleTime: 15 * 60 * 1000,
+    cacheTime: 15 * 60 * 1000,
     retry: 1,
   });
 }
