@@ -8,6 +8,7 @@ import { SteamParticles } from "@/components/cozy/SteamParticles";
 import { PawIcon } from "@/components/cozy/PawIcon";
 import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
 import { useStreamStatus } from "@/hooks/use-twitch";
+import { useDailyVerse } from "@/hooks/use-daily-verse";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -189,6 +190,8 @@ const liveFeatures = [
 ] as const;
 
 function HomePage() {
+  const { verse, loading, error } = useDailyVerse();
+
   return (
     <>
       {/* Hero */}
@@ -347,21 +350,38 @@ function HomePage() {
                 <p className="text-sm text-muted-foreground">Uma palavra tranquila para o seu tempo.</p>
               </div>
             </div>
-            <div className="rounded-[32px] border border-sage/20 bg-sage/10 p-10">
-              <p className="font-serif text-3xl leading-tight mb-6 text-foreground">
-                O Senhor é o meu pastor; de nada terei falta. Em verdes pastagens me faz repousar...
-              </p>
-              <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-                Uma pausa suave para respirar, encontrar sentido e lembrar que você é amado.
-              </p>
-              <Link
-                to="/devocional"
-                className="inline-flex items-center gap-2 rounded-full bg-warm-orange px-5 py-3 text-sm font-semibold text-primary-foreground hover:shadow-lg hover:shadow-warm-orange/20 transition-all"
-              >
-                Ver devocional completo
-                <ArrowRight className="size-4" />
-              </Link>
+            <div className="rounded-[32px] border border-sage/20 bg-sage/10 p-10 min-h-[220px]">
+              {loading ? (
+                <div className="space-y-5 animate-pulse">
+                  <div className="h-14 rounded-3xl bg-muted/70" />
+                  <div className="h-4 w-5/6 rounded-full bg-muted/70" />
+                  <div className="h-4 w-3/4 rounded-full bg-muted/70" />
+                </div>
+              ) : error ? (
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Hoje o silêncio também pode ser uma forma de cuidado 🌿
+                </p>
+              ) : (
+                <>
+                  <p className="font-serif text-3xl leading-tight mb-6 text-foreground">
+                    {verse?.text}
+                  </p>
+                  <div className="text-sm text-sage font-medium tracking-wide">
+                    {verse?.reference} · {verse?.book} {verse?.chapter}:{verse?.verse} · {verse?.version}
+                  </div>
+                </>
+              )}
             </div>
+            <p className="text-sm text-muted-foreground mb-8 leading-relaxed mt-8">
+              Uma pausa suave para respirar, encontrar sentido e lembrar que você é amado.
+            </p>
+            <Link
+              to="/devocional"
+              className="inline-flex items-center gap-2 rounded-full bg-warm-orange px-5 py-3 text-sm font-semibold text-primary-foreground hover:shadow-lg hover:shadow-warm-orange/20 transition-all"
+            >
+              Ver devocional completo
+              <ArrowRight className="size-4" />
+            </Link>
           </div>
         </div>
       </section>

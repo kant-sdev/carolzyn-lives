@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Sunrise } from "lucide-react";
 import room from "@/assets/devocional-room.jpg";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
+import { useDailyVerse } from "@/hooks/use-daily-verse";
 
 export const Route = createFileRoute("/devocional")({
   head: () => ({
@@ -24,6 +25,8 @@ export const Route = createFileRoute("/devocional")({
 });
 
 function DevocionalPage() {
+  const { verse, loading, error } = useDailyVerse();
+
   return (
     <>
       {/* Hero with cozy room */}
@@ -73,17 +76,33 @@ function DevocionalPage() {
             <span className="absolute top-6 left-7 text-7xl text-sage/20 font-serif leading-none">
               "
             </span>
-            <p className="font-serif text-2xl lg:text-3xl italic text-center leading-snug px-2 mt-2">
-              O Senhor é o meu pastor; de nada terei falta. Em verdes pastagens me faz repousar e me
-              conduz a águas tranquilas.
-            </p>
-            <div className="text-center mt-7 text-sage font-medium tracking-wide">
-              Salmos 23:1-2
+            <div className="min-h-[220px] mt-2">
+              {loading ? (
+                <div className="space-y-5 animate-pulse">
+                  <div className="h-14 rounded-3xl bg-muted/70" />
+                  <div className="h-4 w-4/5 rounded-full bg-muted/70" />
+                  <div className="h-4 w-1/2 rounded-full bg-muted/70" />
+                </div>
+              ) : error ? (
+                <p className="text-center text-sm leading-relaxed text-muted-foreground">
+                  Hoje o silêncio também pode ser uma forma de cuidado 🌿
+                </p>
+              ) : (
+                <p className="font-serif text-2xl lg:text-3xl italic text-center leading-snug px-2 text-foreground">
+                  {verse?.text}
+                </p>
+              )}
             </div>
+            {!loading && !error && verse ? (
+              <div className="text-center mt-7 text-sage font-medium tracking-wide">
+                {verse.reference}
+              </div>
+            ) : null}
             <hr className="my-9 border-sage/15" />
             <p className="text-muted-foreground italic text-center leading-relaxed">
-              Que hoje você encontre descanso no meio da correria. Respire fundo e saiba que você é amado,
-              exatamente do jeitinho que está.
+              {error
+                ? "Hoje o silêncio também pode ser uma forma de cuidado 🌿"
+                : "Que hoje você encontre descanso no meio da correria. Respire fundo e saiba que você é amado, exatamente do jeitinho que está."}
             </p>
             <p className="text-right mt-4 text-sm text-muted-foreground">— carol 🤎</p>
           </div>
