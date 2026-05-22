@@ -2,13 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import type { TwitchFollower, TwitchFollowerStats, TwitchStream, TwitchUser } from "@/lib/twitch";
 
 const API_PATHS = {
-  stream: "/.netlify/functions/twitch-stream",
+  stream: "/api/twitch/stream",
   followers: "/api/twitch/followers",
   user: "/api/twitch/user",
 };
 
 async function fetchStream(): Promise<TwitchStream> {
-  const response = await fetch(API_PATHS.stream, { cache: "no-store" });
+  const response = await fetch(API_PATHS.stream);
   if (!response.ok) {
     throw new Error("Falha ao buscar status da stream");
   }
@@ -37,25 +37,29 @@ async function fetchUser(): Promise<TwitchUser> {
 }
 
 export function useStreamStatus() {
-  return useQuery({
+  const query = useQuery<TwitchStream, Error>({
     queryKey: ["twitch-stream"],
     queryFn: fetchStream,
-    // Atualiza automaticamente a cada 30 minutos e busca ao focar a janela
-    refetchInterval: 15 * 60 * 1000,
+    // Cache local por 30 minutos para manter a integração suave
+    refetchInterval: 30 * 60 * 1000,
     refetchOnWindowFocus: true,
-    staleTime: 0,
+    staleTime: 30 * 60 * 1000,
     retry: 1,
   });
+
+  return {
+    ...query,
+    isLive: query.data?.online ?? false,
+  };
 }
 
 export function useFollowers(limit: number = 10) {
-  return useQuery({
+  return useQuery<TwitchFollowerStats, Error>({
     queryKey: ["twitch-followers", limit],
     queryFn: () => fetchFollowers(limit),
     refetchInterval: 15 * 60 * 1000,
     refetchOnWindowFocus: false,
     staleTime: 15 * 60 * 1000,
-    cacheTime: 15 * 60 * 1000,
     retry: 1,
   });
 }

@@ -26,7 +26,7 @@ export function TwitchLiveButton({
 }: TwitchLiveButtonProps) {
   const [mounted, setMounted] = useState(false);
 
-  const { data, isLoading, error } = useStreamStatus();
+  const { data, isLoading, error, isLive } = useStreamStatus();
 
   // Evita hydration mismatch
   useEffect(() => {
@@ -37,36 +37,25 @@ export function TwitchLiveButton({
     return <TwitchLiveButtonSkeleton />;
   }
 
-  // Fallback para erro
-  if (error) {
+  const isOnline = isLive;
+  const buttonLabel = isOnline ? "Ao Vivo" : "Entrar na Live";
+  const buttonClasses = isOnline
+    ? `hidden sm:inline-flex relative group items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${className}`
+    : `hidden sm:inline-flex opacity-90 items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-muted-foreground bg-foreground/90 hover:text-foreground hover:opacity-100 transition-all duration-300 ${className}`;
+
+  if (error || !data) {
     return (
       <a
         href={TWITCH_URL}
         target="_blank"
         rel="noreferrer"
-        className={`hidden sm:inline-flex bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-all items-center gap-2 ${className}`}
+        className={buttonClasses}
       >
-        Entrar na Live
+        {buttonLabel}
         <span className="size-1.5 bg-gray-400 rounded-full" />
       </a>
     );
   }
-
-  if (!data) {
-    return (
-      <a
-        href={TWITCH_URL}
-        target="_blank"
-        rel="noreferrer"
-        className={`hidden sm:inline-flex bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-all items-center gap-2 ${className}`}
-      >
-        Entrar na Live
-        <span className="size-1.5 bg-gray-400 rounded-full" />
-      </a>
-    );
-  }
-
-  const isOnline = data.online;
 
   if (isOnline) {
     const viewerCountText = showViewerCount ? ` • ${data.viewer_count} ao vivo` : "";
@@ -77,7 +66,7 @@ export function TwitchLiveButton({
         href={TWITCH_URL}
         target="_blank"
         rel="noreferrer"
-        className={`hidden sm:inline-flex relative group items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${className}`}
+        className={buttonClasses}
       >
         {/* Glow background animado */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500/20 to-red-400/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -88,10 +77,10 @@ export function TwitchLiveButton({
         {/* Conteúdo */}
         <div className="relative flex items-center gap-2 z-10">
           <span className="text-white">
-            Ao Vivo
-            {viewerCountText}
-            {titleText}
-          </span>
+          {buttonLabel}
+          {viewerCountText}
+          {titleText}
+        </span>
 
           {/* Ponto vermelho animado */}
           <span className="relative flex h-2 w-2">
@@ -120,9 +109,9 @@ export function TwitchLiveButton({
       href={TWITCH_URL}
       target="_blank"
       rel="noreferrer"
-      className={`hidden sm:inline-flex opacity-70 hover:opacity-90 items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${className}`}
+      className={buttonClasses}
     >
-      <span>Offline ☕</span>
+      <span>{buttonLabel}</span>
       <span className="size-1.5 bg-gray-400 rounded-full" />
     </a>
   );

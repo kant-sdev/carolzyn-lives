@@ -5,6 +5,7 @@ import heroCat from "@/assets/hero-cat.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
 import { PawIcon } from "@/components/cozy/PawIcon";
+import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,6 +99,7 @@ function HomePage() {
             <div className="inline-flex items-center gap-2 rounded-full bg-sage/10 px-4 py-2 text-xs uppercase tracking-[0.22em] font-semibold text-sage mb-6">
               <PawIcon size={14} /> Seja bem-vindo ao ninho
             </div>
+            <StreamStatusBadge />
             <h1 className="font-serif text-5xl lg:text-6xl leading-[1.02] tracking-tight mb-6 text-foreground">
               Um espaço acolhedor para se desligar, compartilhar e sentir que está em casa.
             </h1>

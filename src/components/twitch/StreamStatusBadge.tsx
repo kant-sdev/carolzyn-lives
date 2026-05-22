@@ -40,7 +40,7 @@ export function StreamStatusBadge({
           <span className="absolute inline-flex h-full w-full rounded-full bg-sage opacity-75 animate-pulse" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-sage" />
         </span>
-        Próxima live em breve
+        🌙 Próxima live em breve
       </div>
     );
   }
@@ -49,8 +49,10 @@ export function StreamStatusBadge({
   const isOnline = streamStatus.online;
 
   if (isOnline) {
-    const viewerCountText = showViewerCount ? ` • ${data.viewer_count} filhotes assistindo` : "";
-    const titleText = showTitle && data.title ? ` • ${data.title}` : "";
+    const viewerCountText =
+      showViewerCount && data.viewer_count > 0
+        ? `🔴 ${new Intl.NumberFormat("pt-BR").format(data.viewer_count)} filhotes assistindo agora`
+        : "🔴 Carol está ao vivo agora";
 
     return (
       <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/15 text-red-600 dark:text-red-400 rounded-full text-xs font-medium mb-6 ring-1 ring-red-500/30">
@@ -58,11 +60,7 @@ export function StreamStatusBadge({
           <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-pulse" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
         </span>
-        <span className="truncate">
-          Carol está ao vivo agora
-          {viewerCountText}
-          {titleText}
-        </span>
+        <span className="truncate">{viewerCountText}</span>
       </div>
     );
   }
@@ -74,7 +72,7 @@ export function StreamStatusBadge({
         <span className="absolute inline-flex h-full w-full rounded-full bg-sage opacity-75 animate-pulse" />
         <span className="relative inline-flex rounded-full h-2 w-2 bg-sage" />
       </span>
-      Próxima live em breve
+      🌙 Próxima live em breve
     </div>
   );
 }
