@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Users } from "lucide-react";
+import { useEffect, useState } from "react";
 import heroCat from "@/assets/hero-cat.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
 import { PawIcon } from "@/components/cozy/PawIcon";
 import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
+import { useStreamStatus } from "@/hooks/use-twitch";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,6 +33,109 @@ function TwitchIcon({ className = "" }: { className?: string }) {
     <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden>
       <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" />
     </svg>
+  );
+}
+
+const TWITCH_URL = "https://twitch.tv/carolzyn";
+
+function TwitchLiveNavCard({ delay }: { delay: number }) {
+  const [mounted, setMounted] = useState(false);
+  const { data, isLoading, error, isLive } = useStreamStatus();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isOnline = mounted && !isLoading && !error && isLive;
+  const title = isOnline
+    ? data?.title || "Live cozy com os filhotes"
+    : "Próxima live em breve";
+
+  const description = isOnline
+    ? data?.viewer_count && data.viewer_count > 0
+      ? data?.game_name
+        ? `${new Intl.NumberFormat("pt-BR").format(data.viewer_count)} filhotes assistindo ${data.game_name}`
+        : `${new Intl.NumberFormat("pt-BR").format(data.viewer_count)} filhotes assistindo agora`
+      : data?.game_name
+      ? `Assistindo ${data.game_name}`
+      : "Live cozy com os filhotes"
+    : error
+    ? "O ninho está quentinho, mas não conseguimos carregar o status. Ainda assim, siga a Twitch para não perder a próxima conversa."
+    : "O ninho continua quentinho enquanto esperamos a próxima conversa.";
+
+  const badgeText = isOnline ? "🔴 Ao vivo agora" : "🌙 Offline no momento";
+  const buttonLabel = isOnline ? "Entrar na live" : "Seguir na Twitch";
+  const buttonClasses = isOnline
+    ? "inline-flex items-center gap-2 rounded-full bg-warm-orange px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_rgba(251,146,60,0.18)] hover:shadow-[0_0_40px_rgba(251,146,60,0.25)] transition-all"
+    : "inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all";
+
+  if (!mounted || isLoading) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5, delay: delay }}
+        className="rounded-[32px] border border-border bg-card/90 p-8 shadow-sm shadow-coffee/5"
+      >
+        <div className="h-7 w-32 rounded-full bg-muted/70 mb-6 animate-pulse" />
+        <div className="h-10 w-full rounded-[28px] bg-muted/70 mb-5 animate-pulse" />
+        <div className="space-y-3 mb-8">
+          <div className="h-4 w-full rounded-full bg-muted/70 animate-pulse" />
+          <div className="h-4 w-3/4 rounded-full bg-muted/70 animate-pulse" />
+        </div>
+        <div className="h-10 w-40 rounded-full bg-muted/70 animate-pulse" />
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: delay }}
+      className={`group rounded-[32px] border border-border p-8 shadow-sm shadow-coffee/5 transition-all ${
+        isOnline ? "bg-warm-orange/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-warm-orange/20" : "bg-card/90 hover:-translate-y-1 hover:shadow-xl hover:shadow-coffee/15"
+      }`}
+    >
+      <div className="flex items-center justify-between mb-6 gap-4">
+        <div
+          className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.24em] font-semibold ${
+            isOnline ? "bg-warm-orange/15 text-warm-orange border border-warm-orange/20" : "bg-sage/15 text-sage border border-sage/20"
+          }`}
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className={`absolute inset-0 rounded-full ${isOnline ? "bg-warm-orange opacity-40" : "bg-sage opacity-40"} animate-pulse`} />
+            <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${isOnline ? "bg-warm-orange" : "bg-sage"}`} />
+          </span>
+          {badgeText}
+        </div>
+        <span className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+          Twitch
+        </span>
+      </div>
+
+      <h3 className="font-serif text-3xl mb-4 text-foreground leading-tight">
+        {title}
+      </h3>
+      <p className="text-sm text-muted-foreground leading-relaxed mb-8">{description}</p>
+
+      <a
+        href={TWITCH_URL}
+        target="_blank"
+        rel="noreferrer"
+        className={buttonClasses}
+      >
+        {buttonLabel}
+        {isOnline ? (
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inset-0 rounded-full bg-warm-orange opacity-40 animate-pulse" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-warm-orange" />
+          </span>
+        ) : null}
+      </a>
+    </motion.div>
   );
 }
 
@@ -157,6 +262,10 @@ function HomePage() {
           </div>
           <div className="grid gap-6 lg:grid-cols-3">
             {navCards.map((card, index) => {
+              if ("href" in card && card.href === TWITCH_URL) {
+                return <TwitchLiveNavCard key="twitch-live-card" delay={index * 0.07} />;
+              }
+
               const Icon = card.icon;
               return (
                 <motion.div
