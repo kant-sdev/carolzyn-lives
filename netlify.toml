@@ -8,6 +8,12 @@
   included_files = ["dist/server/**"]
 
 [[redirects]]
+  from = "/api/twitch/stream"
+  to = "/.netlify/functions/twitch-stream"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/.netlify/functions/server"
   status = 200

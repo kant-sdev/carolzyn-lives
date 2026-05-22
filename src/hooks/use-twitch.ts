@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import type { TwitchFollower, TwitchFollowerStats, TwitchStream, TwitchUser } from "@/lib/twitch";
 
+type TwitchStreamResponse = TwitchStream & {
+  isLive?: boolean;
+  stream?: unknown;
+};
+
 const API_PATHS = {
   stream: "/api/twitch/stream",
   followers: "/api/twitch/followers",
@@ -37,7 +42,7 @@ async function fetchUser(): Promise<TwitchUser> {
 }
 
 export function useStreamStatus() {
-  const query = useQuery<TwitchStream, Error>({
+  const query = useQuery<TwitchStreamResponse, Error>({
     queryKey: ["twitch-stream"],
     queryFn: fetchStream,
     // Cache local por 30 minutos para manter a integração suave
@@ -49,7 +54,7 @@ export function useStreamStatus() {
 
   return {
     ...query,
-    isLive: query.data?.online ?? false,
+    isLive: query.data?.isLive ?? query.data?.online ?? false,
   };
 }
 
