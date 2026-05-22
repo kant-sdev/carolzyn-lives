@@ -9,7 +9,6 @@ const links = [
   { to: "/", label: "Início" },
   { to: "/filhotes", label: "Filhotes" },
   { to: "/devocional", label: "Devocional" },
-  { to: "/cafe", label: "Café" },
 ] as const;
 
 function TwitchIcon({ className = "" }: { className?: string }) {

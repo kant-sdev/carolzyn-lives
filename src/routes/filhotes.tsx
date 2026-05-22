@@ -17,7 +17,7 @@ export const Route = createFileRoute("/filhotes")({
           "Conheça os filhotes: nossa comunidade acolhedora no Discord e nas lives da Twitch.",
       },
       { property: "og:title", content: "Filhotes — comunidade carolzyn" },
-      { property: "og:description", content: "Um ninho de gente boa, gatinhos e café." },
+      { property: "og:description", content: "Um ninho de gente boa, gatinhos e carinho." },
     ],
   }),
   component: FilhotesPage,
@@ -51,8 +51,8 @@ function FilhotesPage() {
   const hasStatsError = followersError || streamError;
 
   const followersLabel = totalFollowers
-    ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes seguindo ☕`
-    : "Muitos filhotes espalhando carinho ☕";
+    ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes seguindo a carolzyn`
+    : "Muitos filhotes espalhando carinho";
 
   const topBadgeLabel = totalFollowers
     ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes no ninho`
@@ -60,7 +60,7 @@ function FilhotesPage() {
 
   const streamLabel = isStreamOnline
     ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes na live agora 🐾`
-    : "Comunidade crescendo toda semana ☕";
+    : "Comunidade crescendo toda semana";
 
   return (
     <>
@@ -80,7 +80,7 @@ function FilhotesPage() {
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
               Ser filhote significa ter um cantinho seguro pra ser você mesmo. A gente compartilha
-              fotos dos pets, receitas de café, oração e os pequenos momentos da semana.
+              fotos dos pets, oração e os pequenos momentos da semana.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a

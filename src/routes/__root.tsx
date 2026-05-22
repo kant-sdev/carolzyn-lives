@@ -78,13 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "O cantinho aconchegante da streamer carolzyn: lives, devocional, comunidade dos filhotes e a cafeteria da família.",
+          "O cantinho aconchegante da streamer carolzyn: lives, devocional e comunidade dos filhotes.",
       },
       { name: "author", content: "carolzyn" },
       { property: "og:title", content: "carolzyn — um cantinho cozy para os filhotes" },
       {
         property: "og:description",
-        content: "Pegue sua bebida favorita e fique à vontade, filhote ☕",
+        content: "Venha descansar e ficar à vontade, filhote.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

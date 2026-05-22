@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as FilhotesRouteImport } from './routes/filhotes'
 import { Route as DevocionalRouteImport } from './routes/devocional'
-import { Route as CafeRouteImport } from './routes/cafe'
 import { Route as IndexRouteImport } from './routes/index'
 
 const FilhotesRoute = FilhotesRouteImport.update({
@@ -24,11 +23,6 @@ const DevocionalRoute = DevocionalRouteImport.update({
   path: '/devocional',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CafeRoute = CafeRouteImport.update({
-  id: '/cafe',
-  path: '/cafe',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,34 +31,30 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cafe': typeof CafeRoute
   '/devocional': typeof DevocionalRoute
   '/filhotes': typeof FilhotesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cafe': typeof CafeRoute
   '/devocional': typeof DevocionalRoute
   '/filhotes': typeof FilhotesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cafe': typeof CafeRoute
   '/devocional': typeof DevocionalRoute
   '/filhotes': typeof FilhotesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cafe' | '/devocional' | '/filhotes'
+  fullPaths: '/' | '/devocional' | '/filhotes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cafe' | '/devocional' | '/filhotes'
-  id: '__root__' | '/' | '/cafe' | '/devocional' | '/filhotes'
+  to: '/' | '/devocional' | '/filhotes'
+  id: '__root__' | '/' | '/devocional' | '/filhotes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CafeRoute: typeof CafeRoute
   DevocionalRoute: typeof DevocionalRoute
   FilhotesRoute: typeof FilhotesRoute
 }
@@ -85,13 +75,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DevocionalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cafe': {
-      id: '/cafe'
-      path: '/cafe'
-      fullPath: '/cafe'
-      preLoaderRoute: typeof CafeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -104,7 +87,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CafeRoute: CafeRoute,
   DevocionalRoute: DevocionalRoute,
   FilhotesRoute: FilhotesRoute,
 }

@@ -11,7 +11,7 @@ export function Footer() {
           <span className="font-serif text-lg tracking-tight">carolzyn</span>
         </div>
         <p className="text-sm text-muted-foreground mb-7 italic">
-          Feito com café e oração para todos os filhotes.
+          Feito com carinho e oração para todos os filhotes.
         </p>
         <div className="flex justify-center gap-7 text-xs font-medium text-muted-foreground">
           <a

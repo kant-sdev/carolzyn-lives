@@ -16,7 +16,7 @@ export const Route = createFileRoute("/devocional")({
       { property: "og:title", content: "Devocional cozy — carolzyn" },
       {
         property: "og:description",
-        content: "Um momento calmo pra respirar, orar e tomar um café.",
+        content: "Um momento calmo pra respirar, orar e receber paz.",
       },
     ],
   }),
@@ -31,7 +31,7 @@ function DevocionalPage() {
         <div className="relative h-[44vh] lg:h-[56vh] overflow-hidden">
           <img
             src={room}
-            alt="Quarto cozy ao entardecer com Bíblia, vela e xícara fumegante"
+            alt="Quarto cozy ao entardecer com Bíblia, vela e iluminação suave"
             width={1280}
             height={832}
             className="w-full h-full object-cover"
@@ -52,8 +52,7 @@ function DevocionalPage() {
             Respira fundo, <span className="italic text-warm-orange">filhote</span>.
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Um pedacinho de paz no meio do dia. Sem pressa, sem peso — só você, sua bebida favorita
-            e uma palavra calma.
+            Um pedacinho de paz no meio do dia. Sem pressa, sem peso — só você e uma palavra calma.
           </p>
         </motion.div>
       </section>
@@ -83,8 +82,8 @@ function DevocionalPage() {
             </div>
             <hr className="my-9 border-sage/15" />
             <p className="text-muted-foreground italic text-center leading-relaxed">
-              Que hoje você encontre descanso no meio da correria. Respire fundo, tome um gole do
-              seu café e saiba que você é amado, exatamente do jeitinho que está.
+              Que hoje você encontre descanso no meio da correria. Respire fundo e saiba que você é amado,
+              exatamente do jeitinho que está.
             </p>
             <p className="text-right mt-4 text-sm text-muted-foreground">— carol 🤎</p>
           </div>
@@ -104,7 +103,7 @@ function DevocionalPage() {
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             O devocional dos filhotes acontece toda{" "}
             <strong className="text-foreground">segunda-feira às 09:00</strong>, ao vivo na Twitch.
-            Café, oração e papo bom.
+            Oração, presença e papo bom.
           </p>
           <a
             href="https://twitch.tv/carolzyn"

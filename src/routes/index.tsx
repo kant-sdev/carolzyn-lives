@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Coffee, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Users } from "lucide-react";
 import heroCat from "@/assets/hero-cat.jpg";
 import latte from "@/assets/drink-latte.jpg";
-import coffeePlaceholder from "@/assets/drink-coffeePlaceholder.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
 import { PawIcon } from "@/components/cozy/PawIcon";
@@ -12,16 +11,16 @@ import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "carolzyn — Pegue sua bebida e fique à vontade, filhote" },
+      { title: "carolzyn — Um cantinho cozy para os filhotes" },
       {
         name: "description",
         content:
-          "O cantinho cozy da carolzyn: lives, devocional, comunidade dos filhotes e a cafeteria da família.",
+          "O cantinho cozy da carolzyn: lives, devocional e comunidade dos filhotes.",
       },
       { property: "og:title", content: "carolzyn — um cantinho cozy" },
       {
         property: "og:description",
-        content: "Pegue sua bebida favorita e fique à vontade, filhote ☕",
+        content: "Venha descansar e ficar à vontade, filhote.",
       },
     ],
   }),
@@ -53,14 +52,6 @@ const cards = [
     cta: "Ler versículo",
     tint: "bg-warm-orange/15 text-warm-orange",
   },
-  {
-    to: "/cafe" as const,
-    icon: Coffee,
-    title: "Café",
-    desc: "A cafeteria da nossa família. Conheça nosso cardápio e nossa história.",
-    cta: "Ver cardápio",
-    tint: "bg-coffee/10 text-foreground",
-  },
 ];
 
 function HomePage() {
@@ -78,8 +69,8 @@ function HomePage() {
           >
             <StreamStatusBadge showViewerCount />
             <h1 className="font-serif text-5xl lg:text-7xl leading-[1.05] mb-8 text-balance">
-              Pegue sua bebida favorita e fique à vontade,{" "}
-              <span className="italic text-warm-orange">filhote</span> ☕
+              Venha descansar e ficar à vontade,{" "}
+              <span className="italic text-warm-orange">filhote</span>.
             </h1>
             <p className="text-lg text-muted-foreground max-w-[48ch] mb-10 leading-relaxed">
               Um cantinho calmo na internet para descansarmos, conversarmos sobre a vida e
@@ -117,7 +108,7 @@ function HomePage() {
             <div className="relative z-10 rounded-[32px] overflow-hidden ring-1 ring-black/5 shadow-2xl shadow-coffee/10">
               <img
                 src={heroCat}
-                alt="Gatinhos cozy dormindo ao lado de uma xícara de café fumegante"
+                alt="Gatinhos cozy descansando juntos"
                 width={1024}
                 height={1280}
                 className="w-full h-auto"
@@ -205,52 +196,12 @@ function HomePage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-7"
           >
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <h2 className="font-serif text-3xl mb-2">Especialidades da casa</h2>
-                <p className="text-sm text-muted-foreground max-w-[40ch]">
-                  Feitos com grãos selecionados e muito carinho pela nossa família.
-                </p>
-              </div>
-              <Link
-                to="/cafe"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hidden sm:inline"
-              >
-                Ver todo o menu →
-              </Link>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {[
-                {
-                  img: latte,
-                  name: "Latte do Filhote",
-                  desc: "Expresso, leite vaporizado e canela."
-                },
-                {
-                  img: coffeePlaceholder,
-                  name: "Matcha Sálvia",
-                  desc: "Matcha premium com toque refrescante."
-                },
-              ].map((d) => (
-                <div
-                  key={d.name}
-                  className="flex items-center gap-5 p-4 rounded-2xl bg-muted/50 ring-1 ring-border hover:ring-warm-orange/30 transition-all"
-                >
-                  <img
-                    src={d.img}
-                    alt={d.name}
-                    width={640}
-                    height={640}
-                    loading="lazy"
-                    className="size-24 shrink-0 rounded-xl object-cover ring-1 ring-black/5"
-                  />
-                  <div>
-                    <h4 className="font-medium mb-1">{d.name}</h4>
-                    <p className="text-xs text-muted-foreground mb-2">{d.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <div className="text-center max-w-3xl mx-auto">
+            <h2 className="font-serif text-4xl mb-3">Nossa casa, seu acolhimento</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Um espaço para descansar, encontrar amigos e sentir o carinho da comunidade.
+            </p>
+          </div>
           </motion.div>
         </div>
       </section>
