@@ -148,6 +148,29 @@ async function makeAuthenticatedRequest<T>(
   }
 }
 
+interface TwitchTokenValidation {
+  client_id: string;
+  login?: string;
+  user_id?: string;
+  expires_in: number;
+  scopes?: string[] | null;
+}
+
+async function validateTwitchAccessToken(accessToken: string): Promise<TwitchTokenValidation> {
+  const response = await fetch("https://id.twitch.tv/oauth2/validate", {
+    headers: {
+      Authorization: `OAuth ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    const body = await response.text().catch(() => "");
+    throw new Error(`Falha ao validar token Twitch: ${response.status} ${body}`);
+  }
+
+  return response.json() as Promise<TwitchTokenValidation>;
+}
+
 /**
  * Busca dados públicos de um usuário Twitch
  * @param username - Nome de usuário Twitch (ex: "carolzyn")
@@ -276,9 +299,28 @@ export async function getFollowers(
     const userId = userResponse.data[0].id;
     console.log(`[Twitch] ID do usuário obtido: ${userId}`);
 
+    const token = await getAccessToken();
+    const tokenInfo = await validateTwitchAccessToken(token);
+    const moderatorId = tokenInfo.user_id;
+
+    if (!moderatorId) {
+      console.warn(
+        "[Twitch] Token sem user_id. Endpoint de seguidores pode exigir `moderator_id` e escopo moderator:read:followers."
+      );
+    }
+
+    if (tokenInfo.scopes && !tokenInfo.scopes.includes("moderator:read:followers")) {
+      console.warn(
+        "[Twitch] Token não contém scope moderator:read:followers. A listagem de seguidores pode retornar dados vazios."
+      );
+    }
+
     const followersUrl = new URL("https://api.twitch.tv/helix/channels/followers");
     followersUrl.searchParams.append("broadcaster_id", userId);
     followersUrl.searchParams.append("first", limit.toString());
+    if (moderatorId) {
+      followersUrl.searchParams.append("moderator_id", moderatorId);
+    }
 
     const followersResponse = (await makeAuthenticatedRequest<{
       total: number;
@@ -288,7 +330,13 @@ export async function getFollowers(
       data: TwitchFollowerRaw[];
     };
 
-    if (!followersResponse.data) {
+    if (!followersResponse.data || followersResponse.data.length === 0) {
+      if (followersResponse.total > 0) {
+        throw new Error(
+          "Twitch retornou um total de seguidores mas nenhum registro. Verifique se o token tem escopo moderator:read:followers e se moderator_id está correto."
+        );
+      }
+
       console.log(`[Twitch] Nenhum seguidor encontrado para ${userLogin}`);
       return {
         totalFollowers: followersResponse.total || 0,
