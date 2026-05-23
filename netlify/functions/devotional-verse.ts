@@ -71,7 +71,7 @@ export const handler: NetlifyHandler = async () => {
       statusCode: 200,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=0, s-maxage=86400, stale-while-revalidate=60",
+        "Cache-Control": "public, max-age=0, s-maxage=43200, stale-while-revalidate=60",
       },
       body: JSON.stringify(verse),
     };

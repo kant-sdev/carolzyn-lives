@@ -357,19 +357,19 @@ function HomePage() {
                   <div className="h-4 w-5/6 rounded-full bg-muted/70" />
                   <div className="h-4 w-3/4 rounded-full bg-muted/70" />
                 </div>
-              ) : error ? (
+              ) : verse ? (
+                <>
+                  <p className="font-serif text-3xl leading-tight mb-6 text-foreground">
+                    {verse.text}
+                  </p>
+                  <div className="text-sm text-sage font-medium tracking-wide">
+                    {verse.reference} · {verse.book} {verse.chapter}:{verse.verse} · {verse.version}
+                  </div>
+                </>
+              ) : (
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   Hoje o silêncio também pode ser uma forma de cuidado 🌿
                 </p>
-              ) : (
-                <>
-                  <p className="font-serif text-3xl leading-tight mb-6 text-foreground">
-                    {verse?.text}
-                  </p>
-                  <div className="text-sm text-sage font-medium tracking-wide">
-                    {verse?.reference} · {verse?.book} {verse?.chapter}:{verse?.verse} · {verse?.version}
-                  </div>
-                </>
               )}
             </div>
             <p className="text-sm text-muted-foreground mb-8 leading-relaxed mt-8">

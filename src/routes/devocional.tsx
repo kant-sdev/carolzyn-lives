@@ -83,17 +83,17 @@ function DevocionalPage() {
                   <div className="h-4 w-4/5 rounded-full bg-muted/70" />
                   <div className="h-4 w-1/2 rounded-full bg-muted/70" />
                 </div>
-              ) : error ? (
+              ) : verse ? (
+                <p className="font-serif text-2xl lg:text-3xl italic text-center leading-snug px-2 text-foreground">
+                  {verse.text}
+                </p>
+              ) : (
                 <p className="text-center text-sm leading-relaxed text-muted-foreground">
                   Hoje o silêncio também pode ser uma forma de cuidado 🌿
                 </p>
-              ) : (
-                <p className="font-serif text-2xl lg:text-3xl italic text-center leading-snug px-2 text-foreground">
-                  {verse?.text}
-                </p>
               )}
             </div>
-            {!loading && !error && verse ? (
+            {verse ? (
               <div className="text-center mt-7 text-sage font-medium tracking-wide">
                 {verse.reference}
               </div>
