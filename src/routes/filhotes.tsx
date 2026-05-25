@@ -146,7 +146,7 @@ function FilhotesPage() {
               <div className="grid gap-6 lg:grid-cols-[1.5fr_minmax(320px,1fr)]">
                 <div className="rounded-[32px] overflow-hidden border border-border bg-black shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
                   {isLoadingStats ? (
-                    <div className="aspect-video bg-muted/40 flex items-center justify-center text-muted-foreground">
+                    <div className="h-[220px] sm:h-[320px] lg:h-[360px] xl:h-[400px] bg-muted/40 flex items-center justify-center text-muted-foreground">
                       Carregando live...
                     </div>
                   ) : isStreamOnline ? (
@@ -156,10 +156,10 @@ function FilhotesPage() {
                       allowFullScreen
                       frameBorder="0"
                       loading="lazy"
-                      className="w-full aspect-video"
+                      className="w-full h-[220px] sm:h-[320px] lg:h-[360px] xl:h-[400px]"
                     />
                   ) : (
-                    <div className="aspect-video bg-warm-orange/10 p-8 flex flex-col justify-between rounded-[32px]">
+                    <div className="h-[220px] sm:h-[320px] lg:h-[360px] xl:h-[400px] bg-warm-orange/10 p-8 flex flex-col justify-between rounded-[32px]">
                       <div>
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-warm-orange shadow-sm">
                           <span className="inline-flex h-2.5 w-2.5 rounded-full bg-warm-orange animate-pulse" />
@@ -192,29 +192,23 @@ function FilhotesPage() {
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Status</p>
-                  <p className="text-base font-semibold text-foreground">
-                    {isStreamOnline ? "Ao vivo agora" : "Offline acolhedor"}
-                  </p>
-                </div>
-                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Público</p>
-                  <p className="text-base font-semibold text-foreground">
-                    {isStreamOnline
-                      ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes no chat`
-                      : "Comunidade reunida"}
-                  </p>
-                </div>
-                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Discord</p>
-                  <p className="text-base font-semibold text-foreground">Sempre aberto</p>
-                </div>
-                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Clima</p>
-                  <p className="text-base font-semibold text-foreground">Aconchegante e acolhedor</p>
-                </div>
+              <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+                <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 px-3 py-2 text-red-700 ring-1 ring-red-500/15">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
+                  {isStreamOnline ? "Ao vivo agora" : "Offline acolhedor"}
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-2 text-emerald-700 ring-1 ring-emerald-500/15">
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                  {isStreamOnline ? "Comunidade ativa" : "Comunidade reunida"}
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-violet-500/10 px-3 py-2 text-violet-700 ring-1 ring-violet-500/15">
+                  <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
+                  Chat conectado
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-orange-500/10 px-3 py-2 text-orange-700 ring-1 ring-orange-500/15">
+                  <span className="h-2.5 w-2.5 rounded-full bg-orange-500" />
+                  Discord aberto
+                </span>
               </div>
 
               <div className="flex justify-center">
