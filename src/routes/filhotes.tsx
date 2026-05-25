@@ -124,181 +124,111 @@ function FilhotesPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6 }}
-              className="rounded-3xl ring-1 ring-border bg-card/50 p-6"
-            >
-              <div className="flex flex-col gap-6">
-                <div className="space-y-4">
-                  <StreamStatusBadge showViewerCount />
-                  <div>
-                    <h3 className="font-serif text-3xl">Ninho Ao Vivo</h3>
-                    <p className="text-muted-foreground mt-2">
-                      Assistir, comentar e acompanhar a Carol no mesmo lugar, com o clima cozy do ninho.
-                    </p>
-                  </div>
-                </div>
-
-                {isLoadingStats ? (
-                  <div className="rounded-[32px] border border-border bg-background p-8 min-h-[420px] animate-pulse" />
-                ) : isStreamOnline ? (
-                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-                    <div className="rounded-[32px] overflow-hidden border border-border bg-black">
-                      <iframe
-                        title="Player Twitch Carolzyn"
-                        src="https://player.twitch.tv/?channel=carolzyn&parent=carolzyn-lives.netlify.app"
-                        allowFullScreen
-                        frameBorder="0"
-                        loading="lazy"
-                        className="w-full h-[360px] sm:h-[430px]"
-                      />
-                    </div>
-
-                    <div className="rounded-[32px] overflow-hidden border border-border bg-card">
-                      <div className="px-5 py-4 border-b border-border/70 bg-muted/70">
-                        <p className="text-sm font-semibold text-foreground">Chat da Twitch</p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Converse com a comunidade enquanto a live acontece.
-                        </p>
-                      </div>
-                      <iframe
-                        title="Chat Twitch Carolzyn"
-                        src="https://www.twitch.tv/embed/carolzyn/chat?parent=carolzyn-lives.netlify.app"
-                        frameBorder="0"
-                        loading="lazy"
-                        className="w-full h-[360px] sm:h-[430px]"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div className="rounded-[32px] border border-border bg-warm-orange/5 p-8 min-h-[420px] flex flex-col justify-between">
-                    <div className="space-y-6">
-                      <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-warm-orange shadow-sm">
-                        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-warm-orange animate-pulse" />
-                        O ninho está em descanso
-                      </div>
-
-                      <div className="space-y-4">
-                        <h3 className="font-serif text-4xl leading-tight">Toca o sininho do ninho 🐣</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          A live está descansando agora, mas o chat e a comunidade continuam pertinho.
-                          Volte quando quiser para receber carinho, oração e o calor do ninho.
-                        </p>
-                      </div>
-
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <a
-                          href="https://discord.gg/7g9wqcKhb"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center justify-center rounded-2xl bg-warm-orange text-primary-foreground px-4 py-3 text-sm font-semibold hover:shadow-lg hover:shadow-warm-orange/20 transition-all"
-                        >
-                          Entrar no Discord
-                        </a>
-                        <a
-                          href="https://twitch.tv/carolzyn"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center justify-center rounded-2xl border border-border bg-card px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all"
-                        >
-                          Visitar o canal da Twitch
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="rounded-[28px] bg-gradient-to-r from-warm-orange/10 via-sage/10 to-coffee/10 p-6 text-center">
-                      <p className="text-sm text-muted-foreground">
-                        Mesmo offline, o ninho segue vivo. O canal e o chat voltam quando a Carol retornar.
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-
-            {/* Community stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-col justify-between"
-            >
-              <div className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6 }}
+            className="rounded-[40px] ring-1 ring-border bg-card/60 p-6 shadow-xl shadow-coffee/10"
+          >
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <StreamStatusBadge showViewerCount />
                 <div>
-                  <h3 className="font-serif text-3xl mb-2">Juntos no ninho</h3>
-                  <p className="text-muted-foreground">
-                    Nossa comunidade cresce a cada semana e encontra espaço no Discord, nas lives e nos momentos de carinho.
+                  <h3 className="font-serif text-4xl">Ninho Ao Vivo</h3>
+                  <p className="text-muted-foreground mt-2 max-w-2xl">
+                    Uma experiência integrada com a live da Carol e o chat da comunidade.
+                    Aqui é o ponto de encontro da Twitch, do Discord e do calor do ninho.
                   </p>
                 </div>
+              </div>
 
-                <div className="space-y-4">
-                  <div className="p-4 rounded-2xl bg-warm-orange/10 border border-warm-orange/20">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-1">
-                      Presença ao vivo
-                    </p>
-                    {isLoadingStats ? (
-                      <Skeleton className="h-12 w-full max-w-xs rounded-2xl" />
-                    ) : (
-                      <p className="text-2xl font-semibold">{streamLabel}</p>
-                    )}
-                    <p className="text-sm text-muted-foreground mt-2">
-                      {hasStatsError
-                        ? "A conexão Twitch deu uma pausa, mas o ninho segue ali para você."
-                        : isStreamOnline
-                        ? "A live está quentinha e cheia de abraços."
-                        : "A live descansou, mas o ninho continua acolhendo."}
-                    </p>
-                  </div>
+              <div className="grid gap-6 lg:grid-cols-[1.5fr_minmax(320px,1fr)]">
+                <div className="rounded-[32px] overflow-hidden border border-border bg-black shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+                  {isLoadingStats ? (
+                    <div className="aspect-video bg-muted/40 flex items-center justify-center text-muted-foreground">
+                      Carregando live...
+                    </div>
+                  ) : isStreamOnline ? (
+                    <iframe
+                      title="Player Twitch Carolzyn"
+                      src="https://player.twitch.tv/?channel=carolzyn&parent=carolzyn-lives.netlify.app"
+                      allowFullScreen
+                      frameBorder="0"
+                      loading="lazy"
+                      className="w-full aspect-video"
+                    />
+                  ) : (
+                    <div className="aspect-video bg-warm-orange/10 p-8 flex flex-col justify-between rounded-[32px]">
+                      <div>
+                        <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-warm-orange shadow-sm">
+                          <span className="inline-flex h-2.5 w-2.5 rounded-full bg-warm-orange animate-pulse" />
+                          O ninho está em descanso
+                        </div>
+                        <h4 className="font-serif text-3xl mt-6">Toca o sininho do ninho 🐣</h4>
+                        <p className="text-muted-foreground mt-4 leading-relaxed">
+                          A live está offline agora, mas o espaço continua acolhedor. Volte para o chat e para o carinho assim que a Carol retornar.
+                        </p>
+                      </div>
+                      <div className="rounded-[28px] bg-gradient-to-r from-warm-orange/15 via-sage/10 to-coffee/15 p-5 text-sm text-muted-foreground">
+                        Mesmo offline, o hub segue vivo e preparado para mais momentos juntos.
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-                  <div className="p-4 rounded-2xl bg-coffee/10 border border-coffee/20">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-coffee mb-1">
-                      Hub da comunidade
-                    </p>
-                    <p className="text-2xl font-semibold">Discord, live e muito carinho</p>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      O ninho é o lugar para se conectar, ouvir música, rezar e trocar abraços com outros filhotes.
-                    </p>
+                <div className="rounded-[32px] overflow-hidden border border-border bg-card shadow-[0_12px_40px_rgba(0,0,0,0.05)]">
+                  <div className="px-6 py-5 border-b border-border/70 bg-muted/70">
+                    <p className="text-sm font-semibold text-foreground">Chat da Twitch</p>
+                    <p className="text-xs text-muted-foreground mt-1">Converse com a galera e acompanhe a comunidade.</p>
                   </div>
+                  <iframe
+                    title="Chat Twitch Carolzyn"
+                    src="https://www.twitch.tv/embed/carolzyn/chat?parent=carolzyn-lives.netlify.app"
+                    frameBorder="0"
+                    loading="lazy"
+                    className="w-full h-[420px]"
+                  />
                 </div>
               </div>
 
-              <a
-                href="https://discord.gg/7g9wqcKhb"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-6 bg-warm-orange text-primary-foreground py-3 px-6 rounded-full font-semibold hover:shadow-lg hover:shadow-warm-orange/20 transition-all text-center"
-              >
-                Entrar no Discord
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Status</p>
+                  <p className="text-base font-semibold text-foreground">
+                    {isStreamOnline ? "Ao vivo agora" : "Offline acolhedor"}
+                  </p>
+                </div>
+                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Público</p>
+                  <p className="text-base font-semibold text-foreground">
+                    {isStreamOnline
+                      ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes no chat`
+                      : "Comunidade reunida"}
+                  </p>
+                </div>
+                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Discord</p>
+                  <p className="text-base font-semibold text-foreground">Sempre aberto</p>
+                </div>
+                <div className="rounded-3xl border border-border bg-white/80 p-4 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-2">Clima</p>
+                  <p className="text-base font-semibold text-foreground">Aconchegante e acolhedor</p>
+                </div>
+              </div>
 
-      {/* Final CTA */}
-      <section className="py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center bg-warm-orange/10 rounded-[40px] p-12 ring-1 ring-warm-orange/20 relative overflow-hidden">
-          <PawIcon className="absolute -top-4 -left-4 text-warm-orange/15" size={120} />
-          <PawIcon className="absolute -bottom-6 -right-6 text-sage/20" size={140} />
-          <div className="relative">
-            <h2 className="font-serif text-4xl mb-4">Vem ser filhote 🐾</h2>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Entre no Discord pra encontrar gente boa, gatinhos e os recadinhos das lives.
-            </p>
-            <a
-                href="https://discord.gg/7g9wqcKhb"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block bg-foreground text-background px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-all"
-            >
-              Entrar no ninho
-            </a>
-          </div>
+              <div className="flex justify-center">
+                <a
+                  href="https://discord.gg/7g9wqcKhb"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-warm-orange px-8 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-warm-orange/10 transition-all hover:shadow-warm-orange/20"
+                >
+                  Entrar no Discord
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </>
