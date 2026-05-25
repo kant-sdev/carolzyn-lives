@@ -192,25 +192,6 @@ function FilhotesPage() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
-                <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 px-3 py-2 text-red-700 ring-1 ring-red-500/15">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                  {isStreamOnline ? "Ao vivo agora" : "Offline acolhedor"}
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-2 text-emerald-700 ring-1 ring-emerald-500/15">
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                  {isStreamOnline ? "Comunidade ativa" : "Comunidade reunida"}
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-violet-500/10 px-3 py-2 text-violet-700 ring-1 ring-violet-500/15">
-                  <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
-                  Chat conectado
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-orange-500/10 px-3 py-2 text-orange-700 ring-1 ring-orange-500/15">
-                  <span className="h-2.5 w-2.5 rounded-full bg-orange-500" />
-                  Discord aberto
-                </span>
-              </div>
-
               <div className="flex justify-center">
                 <a
                   href="https://discord.gg/7g9wqcKhb"
