@@ -114,16 +114,6 @@ function FilhotesPage() {
       {/* Community board */}
       <section className="py-20 px-6 bg-muted/40">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
-            <div>
-              <h2 className="font-serif text-4xl mb-2">Ninho Ao Vivo</h2>
-              <p className="text-sm text-muted-foreground max-w-2xl">
-                O ponto de encontro da live da Carol: player oficial, chat integrado e um espaço acolhedor
-                para toda a comunidade.
-              </p>
-            </div>
-          </div>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
