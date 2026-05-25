@@ -184,12 +184,12 @@ function FilhotesPage() {
 
               <div className="flex justify-center">
                 <a
-                  href="https://discord.gg/7g9wqcKhb"
+                  href="https://twitch.tv/carolzyn"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center rounded-full bg-warm-orange px-8 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-warm-orange/10 transition-all hover:shadow-warm-orange/20"
                 >
-                  Entrar no Discord
+                  Vem para a live
                 </a>
               </div>
             </div>
