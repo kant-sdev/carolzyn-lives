@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import mural from "@/assets/filhotes-mural.jpg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { PawIcon } from "@/components/cozy/PawIcon";
-import { RecentFollowers } from "@/components/twitch/RecentFollowers";
+import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useFollowers, useStreamStatus } from "@/hooks/use-twitch";
+import { useStreamStatus } from "@/hooks/use-twitch";
 
 export const Route = createFileRoute("/filhotes")({
   head: () => ({
@@ -33,34 +33,21 @@ function TwitchIcon({ className = "" }: { className?: string }) {
 
 function FilhotesPage() {
   const {
-    data: followersData,
-    isLoading: followersLoading,
-    isError: followersError,
-  } = useFollowers(10);
-
-  const {
     data: streamData,
     isLoading: streamLoading,
     isError: streamError,
   } = useStreamStatus();
 
-  const totalFollowers = followersData?.totalFollowers;
   const isStreamOnline = streamData?.online;
   const viewerCount = streamData?.viewer_count ?? 0;
-  const isLoadingStats = followersLoading || streamLoading;
-  const hasStatsError = followersError || streamError;
+  const isLoadingStats = streamLoading;
+  const hasStatsError = streamError;
 
-  const followersLabel = totalFollowers
-    ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes seguindo a carolzyn`
-    : "Muitos filhotes espalhando carinho";
-
-  const topBadgeLabel = totalFollowers
-    ? `${new Intl.NumberFormat("pt-BR").format(totalFollowers)} filhotes no ninho`
-    : "Filhotes no ninho";
+  const heroBadgeLabel = "Ninho Ao Vivo";
 
   const streamLabel = isStreamOnline
-    ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes na live agora 🐾`
-    : "Comunidade crescendo toda semana";
+    ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes no chat agora`
+    : "A live está descansando, mas o ninho continua acolhendo.";
 
   return (
     <>
@@ -73,7 +60,7 @@ function FilhotesPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-warm-orange/15 text-warm-orange rounded-full text-xs font-medium mb-6">
-              <PawIcon size={12} />{isLoadingStats ? "Filhotes no ninho" : topBadgeLabel}
+              <PawIcon size={12} />{isLoadingStats ? "Filhotes no ninho" : heroBadgeLabel}
             </div>
             <h1 className="font-serif text-5xl lg:text-7xl leading-[1.05] mb-6 text-balance">
               Muito mais que uma live, uma <span className="italic text-warm-orange">família</span>.
@@ -129,14 +116,14 @@ function FilhotesPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
             <div>
-              <h2 className="font-serif text-4xl mb-2">Últimos filhotes que chegaram 🐾</h2>
-              <p className="text-sm text-muted-foreground">
-                Pessoas que decidiram fazer parte do ninho recentemente.
+              <h2 className="font-serif text-4xl mb-2">Ninho Ao Vivo</h2>
+              <p className="text-sm text-muted-foreground max-w-2xl">
+                O ponto de encontro da live da Carol: player oficial, chat integrado e um espaço acolhedor
+                para toda a comunidade.
               </p>
             </div>
           </div>
 
-          {/* Recent followers component */}
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -145,7 +132,92 @@ function FilhotesPage() {
               transition={{ duration: 0.6 }}
               className="rounded-3xl ring-1 ring-border bg-card/50 p-6"
             >
-              <RecentFollowers />
+              <div className="flex flex-col gap-6">
+                <div className="space-y-4">
+                  <StreamStatusBadge showViewerCount />
+                  <div>
+                    <h3 className="font-serif text-3xl">Ninho Ao Vivo</h3>
+                    <p className="text-muted-foreground mt-2">
+                      Assistir, comentar e acompanhar a Carol no mesmo lugar, com o clima cozy do ninho.
+                    </p>
+                  </div>
+                </div>
+
+                {isLoadingStats ? (
+                  <div className="rounded-[32px] border border-border bg-background p-8 min-h-[420px] animate-pulse" />
+                ) : isStreamOnline ? (
+                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+                    <div className="rounded-[32px] overflow-hidden border border-border bg-black">
+                      <iframe
+                        title="Player Twitch Carolzyn"
+                        src="https://player.twitch.tv/?channel=carolzyn&parent=carolzyn-lives.netlify.app"
+                        allowFullScreen
+                        frameBorder="0"
+                        loading="lazy"
+                        className="w-full h-[360px] sm:h-[430px]"
+                      />
+                    </div>
+
+                    <div className="rounded-[32px] overflow-hidden border border-border bg-card">
+                      <div className="px-5 py-4 border-b border-border/70 bg-muted/70">
+                        <p className="text-sm font-semibold text-foreground">Chat da Twitch</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Converse com a comunidade enquanto a live acontece.
+                        </p>
+                      </div>
+                      <iframe
+                        title="Chat Twitch Carolzyn"
+                        src="https://www.twitch.tv/embed/carolzyn/chat?parent=carolzyn-lives.netlify.app"
+                        frameBorder="0"
+                        loading="lazy"
+                        className="w-full h-[360px] sm:h-[430px]"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="rounded-[32px] border border-border bg-warm-orange/5 p-8 min-h-[420px] flex flex-col justify-between">
+                    <div className="space-y-6">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-warm-orange shadow-sm">
+                        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-warm-orange animate-pulse" />
+                        O ninho está em descanso
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="font-serif text-4xl leading-tight">Toca o sininho do ninho 🐣</h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          A live está descansando agora, mas o chat e a comunidade continuam pertinho.
+                          Volte quando quiser para receber carinho, oração e o calor do ninho.
+                        </p>
+                      </div>
+
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <a
+                          href="https://discord.gg/7g9wqcKhb"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-2xl bg-warm-orange text-primary-foreground px-4 py-3 text-sm font-semibold hover:shadow-lg hover:shadow-warm-orange/20 transition-all"
+                        >
+                          Entrar no Discord
+                        </a>
+                        <a
+                          href="https://twitch.tv/carolzyn"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-2xl border border-border bg-card px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all"
+                        >
+                          Visitar o canal da Twitch
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="rounded-[28px] bg-gradient-to-r from-warm-orange/10 via-sage/10 to-coffee/10 p-6 text-center">
+                      <p className="text-sm text-muted-foreground">
+                        Mesmo offline, o ninho segue vivo. O canal e o chat voltam quando a Carol retornar.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </motion.div>
 
             {/* Community stats */}
@@ -160,31 +232,14 @@ function FilhotesPage() {
                 <div>
                   <h3 className="font-serif text-3xl mb-2">Juntos no ninho</h3>
                   <p className="text-muted-foreground">
-                    Nossa comunidade cresce a cada semana com novos filhotes que escolhem fazer parte
-                    dessa família aconchegante.
+                    Nossa comunidade cresce a cada semana e encontra espaço no Discord, nas lives e nos momentos de carinho.
                   </p>
                 </div>
 
                 <div className="space-y-4">
                   <div className="p-4 rounded-2xl bg-warm-orange/10 border border-warm-orange/20">
                     <p className="text-xs font-semibold uppercase tracking-widest text-warm-orange mb-1">
-                      Seguidores na Twitch
-                    </p>
-                    {isLoadingStats ? (
-                      <Skeleton className="h-12 w-full max-w-xs rounded-2xl" />
-                    ) : (
-                      <p className="text-2xl font-semibold">{followersLabel}</p>
-                    )}
-                    <p className="text-sm text-muted-foreground mt-2">
-                      {hasStatsError
-                        ? "A conexão quis dar uma pausa, mas o carinho segue aqui."
-                        : "Cada novo seguidor é um filhote chegando no ninho."}
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-coffee/10 border border-coffee/20">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-coffee mb-1">
-                      Crescimento da comunidade
+                      Presença ao vivo
                     </p>
                     {isLoadingStats ? (
                       <Skeleton className="h-12 w-full max-w-xs rounded-2xl" />
@@ -192,9 +247,21 @@ function FilhotesPage() {
                       <p className="text-2xl font-semibold">{streamLabel}</p>
                     )}
                     <p className="text-sm text-muted-foreground mt-2">
-                      {isStreamOnline
+                      {hasStatsError
+                        ? "A conexão Twitch deu uma pausa, mas o ninho segue ali para você."
+                        : isStreamOnline
                         ? "A live está quentinha e cheia de abraços."
-                        : "Mesmo offline, o ninho continua crescendo devagar e com carinho."}
+                        : "A live descansou, mas o ninho continua acolhendo."}
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-coffee/10 border border-coffee/20">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-coffee mb-1">
+                      Hub da comunidade
+                    </p>
+                    <p className="text-2xl font-semibold">Discord, live e muito carinho</p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      O ninho é o lugar para se conectar, ouvir música, rezar e trocar abraços com outros filhotes.
                     </p>
                   </div>
                 </div>
