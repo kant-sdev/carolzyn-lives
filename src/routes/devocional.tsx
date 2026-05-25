@@ -120,8 +120,8 @@ function DevocionalPage() {
         >
           <h2 className="font-serif text-4xl mb-4">A gente se vê na live?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            O devocional dos filhotes acontece toda{" "}
-            <strong className="text-foreground">segunda-feira às 09:00</strong>, ao vivo na Twitch.
+            O devocional dos filhotes acontece de {" "}
+            <strong className="text-foreground">segunda-feira a sexta a partir das 14:00</strong>, ao vivo na Twitch.
             Oração, presença e papo bom.
           </p>
           <a
