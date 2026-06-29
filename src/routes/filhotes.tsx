@@ -98,16 +98,18 @@ function FilhotesPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="max-w-5xl mx-auto rounded-[40px] overflow-hidden ring-1 ring-border shadow-xl shadow-coffee/10"
+          className="max-w-6xl mx-auto rounded-[40px] overflow-hidden ring-1 ring-border shadow-xl shadow-coffee/10"
         >
-          <img
-            src={CarolzinFilhotes}
-            alt="Mural da comunidade com polaroids de gatinhos e bilhetes escritos à mão"
-            width={1280}
-            height={832}
-            loading="lazy"
-            className="w-full h-auto"
-          />
+          <div className="aspect-[16/9] sm:aspect-[16/7]">
+            <img
+              src={CarolzinFilhotes}
+              alt="Mural da comunidade com polaroids de gatinhos e bilhetes escritos à mão"
+              width={1280}
+              height={832}
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </motion.div>
       </section>
 
