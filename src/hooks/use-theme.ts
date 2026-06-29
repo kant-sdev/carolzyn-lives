@@ -10,9 +10,7 @@ export function useTheme() {
       typeof window !== "undefined"
         ? (localStorage.getItem("carolzyn-theme") as Theme | null)
         : null;
-    const prefersDark =
-      typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-    const initial: Theme = stored ?? (prefersDark ? "dark" : "light");
+    const initial: Theme = stored ?? "light";
     setTheme(initial);
     document.documentElement.classList.toggle("dark", initial === "dark");
   }, []);
