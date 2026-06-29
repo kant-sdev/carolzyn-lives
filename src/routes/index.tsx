@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Users } from "lucide-react";
 import { useEffect, useState } from "react";
-import heroCat from "@/assets/hero-cat.jpg";
+import CarolzinFilhotes from "@/assets/carolzin-filhotes.jpeg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
 import { PawIcon } from "@/components/cozy/PawIcon";
@@ -258,8 +258,8 @@ function HomePage() {
             <div className="absolute -bottom-12 -left-10 size-64 bg-sage/15 rounded-full blur-3xl" />
             <div className="relative rounded-[36px] overflow-hidden ring-1 ring-border shadow-2xl shadow-coffee/15">
               <img
-                src={heroCat}
-                alt="Gatinhos cozy descansando juntos"
+                src={CarolzinFilhotes}
+                alt="Carolzinha com Filhotes"
                 width={1024}
                 height={1280}
                 className="w-full h-auto"

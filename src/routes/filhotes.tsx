@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import mural from "@/assets/filhotes-mural.jpg";
+import CarolzinFilhotes from "@/assets/carolzin-filhotes.jpeg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { PawIcon } from "@/components/cozy/PawIcon";
 import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
@@ -101,7 +101,7 @@ function FilhotesPage() {
           className="max-w-5xl mx-auto rounded-[40px] overflow-hidden ring-1 ring-border shadow-xl shadow-coffee/10"
         >
           <img
-            src={mural}
+            src={CarolzinFilhotes}
             alt="Mural da comunidade com polaroids de gatinhos e bilhetes escritos à mão"
             width={1280}
             height={832}
