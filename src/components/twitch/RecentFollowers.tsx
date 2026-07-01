@@ -86,10 +86,10 @@ export function RecentFollowers({ limit = 10 }: RecentFollowersProps) {
   const showFallback = followersError && !hasCachedData;
 
   const headerDescription = followersLoading
-    ? "Enquanto a conexão acorda, o ninho se prepara." 
+    ? "Enquanto a conexão acorda, a toca se prepara." 
     : followersError
     ? "Os dados voltam em breve — cache de até 30 min."
-    : "Pessoas que decidiram fazer parte do ninho recentemente.";
+    : "Pessoas que decidiram fazer parte da toca recentemente.";
 
   return (
     <div className="space-y-6 min-h-[420px]">
@@ -149,10 +149,10 @@ export function RecentFollowers({ limit = 10 }: RecentFollowersProps) {
                   Twitch deu uma pausinha ☕
                 </p>
                 <h4 className="mt-3 text-lg font-semibold text-foreground">
-                  O ninho segue acolhedor, mesmo sem resposta da Twitch.
+                  A toca segue acolhedora, mesmo sem resposta da Twitch.
                 </h4>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Os dados voltam em breve. Enquanto isso, o espaço fica preenchido com o clima do ninho e um convite para tentar de novo.
+                  Os dados voltam em breve. Enquanto isso, o espaço fica preenchido com o clima da toca e um convite para tentar de novo.
                 </p>
               </div>
 
@@ -169,7 +169,7 @@ export function RecentFollowers({ limit = 10 }: RecentFollowersProps) {
             <div className="grid gap-3 sm:grid-cols-2">
               {[
                 {
-                  title: "O ninho está quentinho",
+                  title: "A toca está quentinha",
                   description: "Mesmo sem Twitch, a comunidade segue acolhida e cheia de boas-vindas.",
                 },
                 {
@@ -191,7 +191,7 @@ export function RecentFollowers({ limit = 10 }: RecentFollowersProps) {
         ) : (
           <div className="rounded-3xl border border-border/50 bg-muted/40 p-6 min-h-[180px] flex items-center justify-center text-center">
             <div>
-              <p className="text-sm font-semibold text-foreground">O ninho está calmo por enquanto.</p>
+              <p className="text-sm font-semibold text-foreground">A toca está calma por enquanto.</p>
               <p className="mt-2 text-sm text-muted-foreground">
                 Logo chegam mais filhotes para preencher esse cantinho.
               </p>

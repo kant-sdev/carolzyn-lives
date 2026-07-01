@@ -17,7 +17,7 @@ export const Route = createFileRoute("/filhotes")({
           "Conheça os filhotes: nossa comunidade acolhedora no Discord e nas lives da Twitch.",
       },
       { property: "og:title", content: "Filhotes — comunidade carolzyn" },
-      { property: "og:description", content: "Um ninho de gente boa, gatinhos e carinho." },
+      { property: "og:description", content: "Uma toca com gente boa" },
     ],
   }),
   component: FilhotesPage,
@@ -43,11 +43,11 @@ function FilhotesPage() {
   const isLoadingStats = streamLoading;
   const hasStatsError = streamError;
 
-  const heroBadgeLabel = "Ninho Ao Vivo";
+  const heroBadgeLabel = "Toquinha Ao Vivo";
 
   const streamLabel = isStreamOnline
     ? `${new Intl.NumberFormat("pt-BR").format(viewerCount)} filhotes no chat agora`
-    : "A live está descansando, mas o ninho continua acolhendo.";
+    : "A live está descansando, mas a toca continua acolhendo.";
 
   return (
     <>
@@ -60,8 +60,9 @@ function FilhotesPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-warm-orange/15 text-warm-orange rounded-full text-xs font-medium mb-6">
-              <PawIcon size={12} />{isLoadingStats ? "Filhotes no ninho" : heroBadgeLabel}
+              <PawIcon size={12} />{isLoadingStats ? "Filhotes na toca" : heroBadgeLabel}
             </div>
+
             <h1 className="font-serif text-5xl lg:text-7xl leading-[1.05] mb-6 text-balance">
               Muito mais que uma live, uma <span className="italic text-warm-orange">família</span>.
             </h1>

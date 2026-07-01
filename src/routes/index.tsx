@@ -69,8 +69,8 @@ function TwitchLiveNavCard({ delay }: { delay: number }) {
       ? `Assistindo ${data.game_name}`
       : "Live cozy com os filhotes"
     : error
-    ? "O ninho está quentinho, mas não conseguimos carregar o status. Ainda assim, siga a Twitch para não perder a próxima conversa."
-    : "O ninho continua quentinho enquanto esperamos a próxima conversa.";
+    ? "A toca está quentinha, mas não conseguimos carregar o status. Ainda assim, siga a Twitch para não perder a próxima conversa."
+    : "A toca está quentinha continua quentinho enquanto esperamos a próxima conversa.";
 
   const badgeText = isOnline ? "🔴 Ao vivo agora" : "🌙 Offline no momento";
   const buttonLabel = isOnline ? "Entrar na live" : "Seguir na Twitch";

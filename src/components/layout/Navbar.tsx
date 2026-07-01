@@ -44,7 +44,7 @@ export function Navbar() {
           <div className="size-9 bg-warm-orange/15 rounded-full flex items-center justify-center ring-1 ring-warm-orange/30">
             <PawIcon className="text-warm-orange" size={18} />
           </div>
-          <span className="font-serif text-xl tracking-tight">carolzyn</span>
+          <span className="font-serif text-xl tracking-tight">Carolzyn</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
