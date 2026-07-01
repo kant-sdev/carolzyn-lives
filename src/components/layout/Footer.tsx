@@ -8,7 +8,7 @@ export function Footer() {
           <div className="size-8 bg-warm-orange/15 rounded-full flex items-center justify-center">
             <PawIcon className="text-warm-orange" size={14} />
           </div>
-          <span className="font-serif text-lg tracking-tight">carolzyn</span>
+          <span className="font-serif text-lg tracking-tight">Carolzyn</span>
         </div>
         <p className="text-sm text-muted-foreground mb-7 italic">
           Feito com carinho e oração para todos os filhotes.

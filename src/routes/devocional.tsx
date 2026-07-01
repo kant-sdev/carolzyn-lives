@@ -102,7 +102,7 @@ function DevocionalPage() {
             <p className="text-muted-foreground italic text-center leading-relaxed">
               {error
                 ? "Hoje o silêncio também pode ser uma forma de cuidado 🌿"
-                : "Que hoje você encontre descanso no meio da correria. Respire fundo e saiba que você é amado, exatamente do jeitinho que está."}
+                : "Que hoje você encontre descanso no meio da correria. Respire fundo e saiba que você é amado!! 🤎"}
             </p>
             <p className="text-right mt-4 text-sm text-muted-foreground">— carol 🤎</p>
           </div>

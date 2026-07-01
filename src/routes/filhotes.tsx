@@ -127,10 +127,10 @@ function FilhotesPage() {
               <div className="space-y-4">
                 <StreamStatusBadge showViewerCount />
                 <div>
-                  <h3 className="font-serif text-4xl">Ninho Ao Vivo</h3>
+                  <h3 className="font-serif text-4xl">Cafofo Ao Vivo</h3>
                   <p className="text-muted-foreground mt-2 max-w-2xl">
                     Uma experiência integrada com a live da Carol e o chat da comunidade.
-                    Aqui é o ponto de encontro da Twitch, do Discord e do calor do ninho.
+                    Aqui é o ponto de encontro da Twitch, do Discord e do calor do cafofo.
                   </p>
                 </div>
               </div>
@@ -155,9 +155,9 @@ function FilhotesPage() {
                       <div>
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-warm-orange shadow-sm">
                           <span className="inline-flex h-2.5 w-2.5 rounded-full bg-warm-orange animate-pulse" />
-                          O ninho está em descanso
+                          O Cafofo está em descanso
                         </div>
-                        <h4 className="font-serif text-3xl mt-6">Toca o sininho do ninho 🐣</h4>
+                        <h4 className="font-serif text-3xl mt-6">Toca o sininho do cafofo 🔔</h4>
                         <p className="text-muted-foreground mt-4 leading-relaxed">
                           A live está offline agora, mas o espaço continua acolhedor. Volte para o chat e para o carinho assim que a Carol retornar.
                         </p>

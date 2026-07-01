@@ -13,13 +13,13 @@ import { useDailyVerse } from "@/hooks/use-daily-verse";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "carolzyn — Um cantinho cozy para os filhotes" },
+      { title: "Carolzy - Um cantinho cozy para os filhotes" },
       {
         name: "description",
         content:
           "O cantinho cozy da carolzyn: lives, devocional e comunidade dos filhotes.",
       },
-      { property: "og:title", content: "carolzyn — um cantinho cozy" },
+      { property: "og:title", content: "Carolzy — um cantinho cozy" },
       {
         property: "og:description",
         content: "Venha descansar e ficar à vontade, filhote.",
@@ -244,6 +244,8 @@ function HomePage() {
                 className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all"
               >
                 <YouTubeIcon className="size-4" />
+
+                Ir para Youtube
               </a>
             </div>
           </motion.div>
