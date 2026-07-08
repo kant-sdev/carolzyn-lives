@@ -35,7 +35,7 @@ export function LiveAndDevocionalSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="rounded-[40px] border border-border bg-card/50 p-10 shadow-2xl shadow-coffee/10 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-slate-900/80 dark:to-slate-950/90 dark:shadow-black/20"
+          className="rounded-[40px] border border-border bg-card/50 p-10 shadow-2xl shadow-coffee/10 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-yellow-950/90 dark:to-yellow-950 dark:shadow-black/20"
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-sage/15 border border-sage/20 px-4 py-2 text-xs uppercase tracking-[0.22em] text-sage font-semibold mb-6 dark:bg-amber-900/40 dark:border-amber-700/50 dark:text-amber-200">
             <PawIcon size={14} /> como é uma live
@@ -78,7 +78,7 @@ export function LiveAndDevocionalSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="rounded-[40px] border border-border bg-card/50 p-10 shadow-2xl shadow-coffee/10 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-slate-900/80 dark:to-slate-950/90 dark:shadow-black/20"
+          className="rounded-[40px] border border-border bg-card/50 p-10 shadow-2xl shadow-coffee/10 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-yellow-950/90 dark:to-yellow-950 dark:shadow-black/20"
         >
           {/* Header */}
           <div className="flex items-center gap-3 mb-8 text-sage dark:text-amber-300">
@@ -94,12 +94,12 @@ export function LiveAndDevocionalSection() {
           </div>
 
           {/* Quote Block */}
-          <div className="rounded-[32px] border border-sage/20 bg-sage/10 dark:border-amber-700/40 dark:bg-slate-950/60 p-10 min-h-[240px] flex flex-col justify-center mb-8">
+          <div className="rounded-[32px] border border-sage/20 bg-sage/10 dark:border-amber-700/40 dark:bg-yellow-950/40 p-10 min-h-[240px] flex flex-col justify-center mb-8">
             {loading ? (
               <div className="space-y-5 animate-pulse">
-                <div className="h-14 rounded-3xl bg-muted/70 dark:bg-slate-800/50" />
-                <div className="h-4 w-5/6 rounded-full bg-muted/70 dark:bg-slate-800/50" />
-                <div className="h-4 w-3/4 rounded-full bg-muted/70 dark:bg-slate-800/50" />
+                <div className="h-14 rounded-3xl bg-muted/70 dark:bg-yellow-900/40" />
+                <div className="h-4 w-5/6 rounded-full bg-muted/70 dark:bg-yellow-900/40" />
+                <div className="h-4 w-3/4 rounded-full bg-muted/70 dark:bg-yellow-900/40" />
               </div>
             ) : verse ? (
               <>
