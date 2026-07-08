@@ -27,15 +27,17 @@ export function LiveAndDevocionalSection() {
   const { verse, loading, error } = useDailyVerse();
 
   return (
-    <section className="py-20 px-6 bg-background">
-      <div className="max-w-7xl mx-auto grid gap-10 xl:grid-cols-[1.1fr_0.9fr] items-start">
+    <section className="py-20 px-6 bg-background relative overflow-hidden">
+      {/* Backdrop blur decorativo */}
+      <div className="absolute inset-0 backdrop-blur-[0.5px] pointer-events-none" />
+      <div className="max-w-7xl mx-auto grid gap-10 xl:grid-cols-[1.1fr_0.9fr] items-start relative z-10">
         {/* Como é uma live - Card esquerdo */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="rounded-[40px] border border-border bg-card/50 p-10 shadow-2xl shadow-coffee/10 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-yellow-950/90 dark:to-yellow-950 dark:shadow-black/20"
+          className="rounded-[40px] border border-border bg-card/40 p-10 shadow-2xl shadow-coffee/5 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-yellow-950/70 dark:to-yellow-950/70 dark:shadow-black/10"
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-sage/15 border border-sage/20 px-4 py-2 text-xs uppercase tracking-[0.22em] text-sage font-semibold mb-6 dark:bg-amber-900/40 dark:border-amber-700/50 dark:text-amber-200">
             <PawIcon size={14} /> como é uma live
@@ -58,7 +60,7 @@ export function LiveAndDevocionalSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4 }}
-                className="rounded-[28px] border border-border bg-muted/30 hover:bg-muted/50 p-5 transition-all dark:border-white/10 dark:bg-white/5 dark:backdrop-blur-sm dark:hover:bg-white/8 dark:hover:border-white/15"
+                className="rounded-[28px] border border-border bg-muted/20 hover:bg-muted/35 p-5 transition-all dark:border-white/10 dark:bg-white/3 dark:backdrop-blur-sm dark:hover:bg-white/5 dark:hover:border-white/15"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="size-10 rounded-3xl bg-sage/15 text-sage flex items-center justify-center dark:bg-amber-700/40 dark:text-amber-300">
@@ -78,7 +80,7 @@ export function LiveAndDevocionalSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="rounded-[40px] border border-border bg-card/50 p-10 shadow-2xl shadow-coffee/10 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-yellow-950/90 dark:to-yellow-950 dark:shadow-black/20"
+          className="rounded-[40px] border border-border bg-card/40 p-10 shadow-2xl shadow-coffee/5 dark:border-amber-700/30 dark:bg-gradient-to-br dark:from-yellow-950/70 dark:to-yellow-950/70 dark:shadow-black/10"
         >
           {/* Header */}
           <div className="flex items-center gap-3 mb-8 text-sage dark:text-amber-300">
@@ -94,12 +96,12 @@ export function LiveAndDevocionalSection() {
           </div>
 
           {/* Quote Block */}
-          <div className="rounded-[32px] border border-sage/20 bg-sage/10 dark:border-amber-700/40 dark:bg-yellow-950/40 p-10 min-h-[240px] flex flex-col justify-center mb-8">
+          <div className="rounded-[32px] border border-sage/20 bg-sage/8 dark:border-amber-700/30 dark:bg-yellow-950/30 p-10 min-h-[240px] flex flex-col justify-center mb-8">
             {loading ? (
               <div className="space-y-5 animate-pulse">
-                <div className="h-14 rounded-3xl bg-muted/70 dark:bg-yellow-900/40" />
-                <div className="h-4 w-5/6 rounded-full bg-muted/70 dark:bg-yellow-900/40" />
-                <div className="h-4 w-3/4 rounded-full bg-muted/70 dark:bg-yellow-900/40" />
+                <div className="h-14 rounded-3xl bg-muted/40 dark:bg-yellow-900/30" />
+                <div className="h-4 w-5/6 rounded-full bg-muted/40 dark:bg-yellow-900/30" />
+                <div className="h-4 w-3/4 rounded-full bg-muted/40 dark:bg-yellow-900/30" />
               </div>
             ) : verse ? (
               <>
