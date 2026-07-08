@@ -27,7 +27,7 @@ export function LiveAndDevocionalSection() {
   const { verse, loading, error } = useDailyVerse();
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-slate-950/50 to-slate-950/30">
+    <section className="py-20 px-6 bg-background">
       <div className="max-w-7xl mx-auto grid gap-10 xl:grid-cols-[1.1fr_0.9fr] items-start">
         {/* Como é uma live - Card esquerdo */}
         <motion.div
@@ -35,7 +35,7 @@ export function LiveAndDevocionalSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="rounded-[40px] border border-amber-700/30 bg-gradient-to-br from-slate-900/80 to-slate-950/90 p-10 shadow-2xl shadow-black/20"
+          className="rounded-[40px] border border-border bg-card/50 dark:bg-gradient-to-br dark:from-slate-900/80 dark:to-slate-950/90 p-10 shadow-2xl shadow-black/20"
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-amber-900/40 border border-amber-700/50 px-4 py-2 text-xs uppercase tracking-[0.22em] text-amber-200 font-semibold mb-6">
             <PawIcon size={14} /> como é uma live
