@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 import CarolzinFilhotes from "@/assets/carolzin-filhotes.jpeg";
 import { FloatingLeaves } from "@/components/cozy/FloatingLeaves";
 import { SteamParticles } from "@/components/cozy/SteamParticles";
-import { PawIcon } from "@/components/cozy/PawIcon";
 import { StreamStatusBadge } from "@/components/twitch/StreamStatusBadge";
 import { useStreamStatus } from "@/hooks/use-twitch";
-import { useDailyVerse } from "@/hooks/use-daily-verse";
+import { LiveAndDevocionalSection } from "@/components/sections/LiveAndDevocionalSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -178,28 +177,7 @@ const navCards = [
   },
 ] as const;
 
-const liveFeatures = [
-  {
-    title: "Conversa tranquila",
-    desc: "Papo aberto, acolhimento e simplicidade em cada momento.",
-  },
-  {
-    title: "Gameplay cozy",
-    desc: "Jogos leves, risadas e presença sem pressa.",
-  },
-  {
-    title: "Devocional junto",
-    desc: "Versículos e reflexões com ternura e calor humano.",
-  },
-  {
-    title: "Comunidade acolhedora",
-    desc: "Filhotes que se conectam, se apoiam e celebram juntos.",
-  },
-] as const;
-
 function HomePage() {
-  const { verse, loading, error } = useDailyVerse();
-
   return (
     <>
       {/* Hero */}
@@ -330,77 +308,7 @@ function HomePage() {
       </section>
 
       {/* Live experience + devotional */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto grid gap-10 xl:grid-cols-[1.1fr_0.9fr] items-start">
-          <div className="rounded-[40px] border border-border bg-sage/10 p-10 shadow-2xl shadow-sage/5">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs uppercase tracking-[0.22em] text-sage font-semibold mb-6">
-              <PawIcon size={14} /> como é uma live
-            </div>
-            <h2 className="font-serif text-4xl mb-5">A sensação é de estar entre amigos.</h2>
-            <p className="text-muted-foreground max-w-2xl leading-relaxed mb-8">
-              Lives com papo leve, gameplay cozy e um canto onde todo filhote é bem-vindo.
-              Aqui tem afeto, apoio e presença real.
-            </p>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {liveFeatures.map((item) => (
-                <div key={item.title} className="rounded-[28px] border border-border bg-white/75 p-5">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="size-10 rounded-3xl bg-sage/15 text-sage flex items-center justify-center">
-                      <PawIcon size={14} />
-                    </div>
-                    <h3 className="font-semibold">{item.title}</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[40px] border border-sage/15 bg-white/90 p-10 shadow-2xl shadow-sage/5">
-            <div className="flex items-center gap-3 mb-6 text-sage">
-              <div className="size-12 rounded-3xl bg-sage/20 flex items-center justify-center">
-                <BookOpen className="size-5" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.22em] font-semibold">Devocional do dia</p>
-                <p className="text-sm text-muted-foreground">Uma palavra tranquila para o seu tempo.</p>
-              </div>
-            </div>
-            <div className="rounded-[32px] border border-sage/20 bg-sage/10 p-10 min-h-[220px]">
-              {loading ? (
-                <div className="space-y-5 animate-pulse">
-                  <div className="h-14 rounded-3xl bg-muted/70" />
-                  <div className="h-4 w-5/6 rounded-full bg-muted/70" />
-                  <div className="h-4 w-3/4 rounded-full bg-muted/70" />
-                </div>
-              ) : verse ? (
-                <>
-                  <p className="font-serif text-3xl leading-tight mb-6 text-foreground">
-                    {verse.text}
-                  </p>
-                  <div className="text-sm text-sage font-medium tracking-wide">
-                    {verse.reference} · {verse.book} {verse.chapter}:{verse.verse} · {verse.version}
-                  </div>
-                </>
-              ) : (
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Hoje o silêncio também pode ser uma forma de cuidado 🌿
-                </p>
-              )}
-            </div>
-            <p className="text-sm text-muted-foreground mb-8 leading-relaxed mt-8">
-              Uma pausa suave para respirar, encontrar sentido e lembrar que você é amado.
-            </p>
-            <Link
-              to="/devocional"
-              className="inline-flex items-center gap-2 rounded-full bg-warm-orange px-5 py-3 text-sm font-semibold text-primary-foreground hover:shadow-lg hover:shadow-warm-orange/20 transition-all"
-            >
-              Ver devocional completo
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <LiveAndDevocionalSection />
 
       {/* Final CTA */}
       <section className="py-14 px-6 bg-muted/30">
