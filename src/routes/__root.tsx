@@ -76,7 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "carolzyn - um cantinho cozy para os filhotes" },
+      { title: "Carolzyn - um cantinho cozy para os filhotes" },
       {
         name: "description",
         content:
