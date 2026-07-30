@@ -8,6 +8,8 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+import CarolzynIcon from "../assets/carolzyn.ico";
+
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -74,7 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "carolzyn — um cantinho cozy para os filhotes" },
+      { title: "carolzyn - um cantinho cozy para os filhotes" },
       {
         name: "description",
         content:
@@ -94,6 +96,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/x-icon", // Use "image/png" se o seu arquivo for um .png
+        href: CarolzynIcon,
       },
     ],
   }),
