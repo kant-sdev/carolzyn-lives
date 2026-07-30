@@ -29,7 +29,7 @@ export function LiveAndDevocionalSection() {
   return (
     <section className="py-20 px-6 bg-background relative overflow-hidden">
       {/* Backdrop blur decorativo */}
-      <div className="absolute inset-0 backdrop-blur-[0.5px] pointer-events-none" />
+      <div className="absolute inset-0 backdrop-blur-[0.7px] pointer-events-none" />
       <div className="max-w-7xl mx-auto grid gap-10 xl:grid-cols-[1.1fr_0.9fr] items-start relative z-10">
         {/* Como é uma live - Card esquerdo */}
         <motion.div
